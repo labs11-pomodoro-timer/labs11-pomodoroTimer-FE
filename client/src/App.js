@@ -4,6 +4,7 @@ import { Auth0Lock } from "auth0-lock";
 
 // testing bootstrap
 import Button from 'react-bootstrap/Button';
+import UserListView from "./dummy-display/userListView";
 
 var lock = new Auth0Lock(
   process.env.REACT_APP_CLIENT_ID,
@@ -15,13 +16,16 @@ class App extends Component {
     console.log("PROCESS: ", process.env)
     return (
       <div className="App">
-        <header className="App-header">
+        <header>
           <h1>Focus Timer</h1>
           {/* testing button from bootstrap */}
           <Button onClick={function() {
             lock.show()
             }} variant="primary">Login</Button>
         </header>
+        <div>
+          <UserListView />
+        </div>
       </div>
     )}}
 

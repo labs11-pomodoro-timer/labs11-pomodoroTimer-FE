@@ -5,12 +5,17 @@
   "dependencies": {
     "auth0-js": "^9.10.1",
     "auth0-lock": "^11.14.1",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "dotenv": "^7.0.0",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react-redux": "^6.0.1",
+    "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
