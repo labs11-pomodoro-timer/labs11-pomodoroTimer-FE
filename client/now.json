@@ -13,6 +13,10 @@
         "src": "app.js",
         "headers": { "cache-control": "s-maxage=0" },
         "dest": "/index.html"
+      },
+      {
+        "src": "./src/components/auth/auth.js",
+        "dest": "/login.html"
       }
     ],
     "env": {
