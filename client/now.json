@@ -17,7 +17,7 @@
     ],
     "env": {
       "REACT_APP_CLIENT_ID": "2u1N0tM8yEP53wgkylA3xdP0WqNLq0xr",
-      "REACT_APP_DOMAIN_URL": "mjhacker.auth0.com"
+      "REACT_APP_DOMAIN_URL": "https://labs11-pomodorotimer-fe.mjhacker.now.sh"
      }
     
   }
