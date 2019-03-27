@@ -42,8 +42,8 @@ class App extends Component {
             lock.show()
             }} variant="primary">Login</Button>
         </header>
-        <div>
-          {}
+        <div className="name-container">
+          <UserListView />
         </div>
       </div>
     )}}
