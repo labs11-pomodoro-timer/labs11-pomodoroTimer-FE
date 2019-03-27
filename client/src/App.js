@@ -8,8 +8,8 @@ import UserListView from "./dummy-display/userListView";
 
 // The lock function contains 2 arguments, the Client ID and the domain
 var lock = new Auth0Lock(
-  2u1N0tM8yEP53wgkylA3xdP0WqNLq0xr,
-  mjhacker.auth0.com
+  '2u1N0tM8yEP53wgkylA3xdP0WqNLq0xr',
+  'mjhacker.auth0.com'
 );
 
 class App extends Component {
