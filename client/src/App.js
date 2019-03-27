@@ -4,7 +4,7 @@ import { Auth0Lock } from "auth0-lock";
 
 // testing bootstrap
 import Button from 'react-bootstrap/Button';
-import UserListView from "./dummy-display/userListView";
+// import UserListView from "./dummy-display/userListView";
 
 // The lock function contains 2 arguments, the Client ID and the domain
 var lock = new Auth0Lock(
