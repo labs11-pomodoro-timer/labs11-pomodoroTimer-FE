@@ -3,14 +3,14 @@
     "name": "client",
     "builds": [
       {
-        "src": "client/package.json",
+        "src": "./client/package.json",
         "use": "@now/static-build",
         "config": { "distDir": "build" }
       }
     ],
     "routes": [
       {
-        "src": "client/src/app.js",
+        "src": "./client/src/App.js",
         "headers": { "cache-control": "s-maxage=0" },
         "dest": "/index.html"
       }
