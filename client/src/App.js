@@ -24,7 +24,7 @@ class App extends Component {
           console.log(`Error: ${error}`);
           return;
         } else {
-    
+        console.log(profile);
         console.log(authResult);
         alert("hello, " + profile.name);
     
