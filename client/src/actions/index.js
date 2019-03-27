@@ -7,7 +7,7 @@ export const FETCHING_USERS_FAILURE = 'FETCHING_USERS_FAILURE';
 export const fetchUsers = () => dispatch => {
   dispatch({ type: FETCHING_USERS });
   axios
-    .get('https://swapi.co/api/people')
+    .get('https://focustimer-labs11.herokuapp.com/')
     .then(response => {
       dispatch({ type: FETCHING_USERS_SUCCESS, payload: response.data.results });
     })
