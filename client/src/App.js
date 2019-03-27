@@ -23,14 +23,16 @@ class App extends Component {
           // Handle error
           console.log(`Error: ${error}`);
           return;
-        }
+        } else {
     
-        alert(authResult);
+        console.log(authResult);
+        alert("hello, " + profile.name);
     
         localStorage.setItem('accessToken', authResult.accessToken);
         localStorage.setItem('profile', JSON.stringify(profile));
-      });
+      }});
     });
+
     return (
       <div className="App">
         <header>
@@ -41,7 +43,7 @@ class App extends Component {
             }} variant="primary">Login</Button>
         </header>
         <div>
-          <UserListView />
+          {}
         </div>
       </div>
     )}}
