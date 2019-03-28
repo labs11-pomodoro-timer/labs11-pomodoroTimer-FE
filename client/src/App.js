@@ -4,7 +4,7 @@ import { Auth0Lock } from "auth0-lock";
 
 // testing bootstrap
 import Button from 'react-bootstrap/Button';
-// import UserListView from "./dummy-display/userListView";
+import UserListView from "./dummy-display/userListView";
 
 import SlackButton from "./components/button/slackButton";
 
