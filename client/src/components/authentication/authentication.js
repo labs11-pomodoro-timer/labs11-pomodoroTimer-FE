@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Profile from "../profile/profile";
+import Login from "../login/login";
 
 const Authenticate = App =>
   class extends Component {
@@ -19,7 +19,7 @@ const Authenticate = App =>
     render() {
       const {loggedIn} = this.state;
       return(
-        loggedIn ? <Profile /> : <App />
+        loggedIn ? <App /> : <Login />
       )
       }
     }
