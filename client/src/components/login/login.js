@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Auth0Lock } from "auth0-lock"
 import Button from 'react-bootstrap/Button';
-import UserListView from "./../../dummy-display/userListView";
-import SlackButton from "./components/button/slackButton";
+import UserListView from "../../dummy-display/userListView";
+import SlackButton from "../button/slackButton";
+
+
+
+// Auth0Lock options (testing purposes)
+// var options = {
+//   auth: {
+//     redirectUrl: 'https://client.mjhacker.now.sh/'
+//   }
+// };
 
 var options = {
 
 };
 
+// The lock function contains 2 arguments, the Client ID and the domain
 var lock = new Auth0Lock(
     '2u1N0tM8yEP53wgkylA3xdP0WqNLq0xr',
     'mjhacker.auth0.com',
@@ -29,9 +39,10 @@ class Login extends Component {
           
               console.log(authResult);
               alert("hello, " + profile.name);
-          
+                
               localStorage.setItem('accessToken', authResult.accessToken);
               localStorage.setItem('profile', JSON.stringify(profile));
+              window.location.reload();
             }});
           });
           
@@ -43,10 +54,7 @@ class Login extends Component {
                   lock.show()
                   }} variant="primary">Login</Button>
               </header>
-              <div className="name-container">
-                <UserListView />
-                <SlackButton />
-              </div>
+              
             </div>
           )
         } 
