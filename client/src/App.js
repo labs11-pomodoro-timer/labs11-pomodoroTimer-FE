@@ -6,6 +6,8 @@ import { Auth0Lock } from "auth0-lock";
 import Button from 'react-bootstrap/Button';
 // import UserListView from "./dummy-display/userListView";
 
+import SlackButton from "./components/button/slackButton";
+
 // The lock function contains 2 arguments, the Client ID and the domain
 var lock = new Auth0Lock(
   '2u1N0tM8yEP53wgkylA3xdP0WqNLq0xr',
@@ -42,8 +44,9 @@ class App extends Component {
             lock.show()
             }} variant="primary">Login</Button>
         </header>
-        <div>
-          {}
+        <div className="name-container">
+          <UserListView />
+          <SlackButton />
         </div>
       </div>
     )}}
