@@ -13,6 +13,11 @@
         "src": "app.js",
         "headers": { "cache-control": "s-maxage=0" },
         "dest": "/index.html"
+      },
+      {
+        "src": "components/profile/profile.js",
+        "headers": { "cache-control": "s-maxage=0" },
+        "dest": "/profile.html"
       }
     ],
     "build": {
