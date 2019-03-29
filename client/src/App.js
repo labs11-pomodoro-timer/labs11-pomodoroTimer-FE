@@ -5,6 +5,8 @@ import Authenticate from './components/authentication/authentication'
 
 import Profile from "./components/profile/profile";
 
+import UserListView from './dummy-display/userListView';
+
 
 class App extends Component {
   
@@ -14,7 +16,10 @@ class App extends Component {
     return (
       <div className="App">
         <Profile />
+        <div className="name-container">
+          <UserListView />
         </div>
+      </div>
       
     )
   } 
