@@ -29,7 +29,7 @@ class Billing extends React.Component {
         })
       }
     );
-
+    console.log(response);
     if (response.ok)
       this.setState({
         complete: true
@@ -69,7 +69,7 @@ class Billing extends React.Component {
                   className="stripe-checkout"
                   token={this.onToken}
                   stripeKey="pk_test_1F6lljDsFPzn4nZ1FJWV1D2b00nAva7WFN"
-                  description="$12.99/mo"
+                  description="$12.99/yr"
                   name="FocusTime"
                 />
               </div>
