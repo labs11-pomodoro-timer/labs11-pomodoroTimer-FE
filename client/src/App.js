@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Auth0Lock } from "auth0-lock";
+import Billing from './components/billing/billing';
 
 // testing bootstrap
 import Button from 'react-bootstrap/Button';
@@ -48,6 +49,7 @@ class App extends Component {
           <UserListView />
           <SlackButton />
         </div>
+        <Billing />
       </div>
     )}}
 

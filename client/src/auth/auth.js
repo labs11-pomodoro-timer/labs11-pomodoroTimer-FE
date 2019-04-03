@@ -54,6 +54,6 @@
 //         // set isLoggedIn flag in localStorage
 //         localStorage.setItem('isLoggedIn', 'true');
 
-//         // set the time that the access token will expier at
+//         // set the time that the access token will expire at
 //     }
 // }
