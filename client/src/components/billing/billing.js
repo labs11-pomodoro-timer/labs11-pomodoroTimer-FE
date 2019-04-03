@@ -68,6 +68,7 @@ class Billing extends React.Component {
                   stripeKey="pk_test_1F6lljDsFPzn4nZ1FJWV1D2b00nAva7WFN"
                   description="$12.99/yr"
                   name="Focus-Timer"
+                  email=""
                 />
                 </div>
                 </div>
