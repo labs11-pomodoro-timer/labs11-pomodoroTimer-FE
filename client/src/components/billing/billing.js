@@ -14,7 +14,7 @@ class Billing extends React.Component {
 
     async onToken(token) {
       let response = await fetch(
-        "https://focustimer-labs11.herokuapp.com/",
+        "https://focustimer-labs11.herokuapp.com/api/stripe/subscription",
         {
           method: "POST",
           headers: {
@@ -68,6 +68,7 @@ class Billing extends React.Component {
                   stripeKey="pk_test_1F6lljDsFPzn4nZ1FJWV1D2b00nAva7WFN"
                   description="$12.99/yr"
                   name="Focus-Timer"
+                  email=""
                 />
                 </div>
                 </div>
