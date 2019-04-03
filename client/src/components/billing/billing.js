@@ -14,7 +14,7 @@ class Billing extends React.Component {
 
     async onToken(token) {
       let response = await fetch(
-        "https://focustimer-labs11.herokuapp.com/",
+        "https://focustimer-labs11.herokuapp.com/api/stripe/subscription",
         {
           method: "POST",
           headers: {
