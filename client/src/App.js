@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Auth0Lock } from "auth0-lock";
+import Billing from './components/billing/billing';
+
 
 import Authenticate from './components/authentication/authentication'
 
@@ -19,6 +22,7 @@ class App extends Component {
         <div className="name-container">
           <UserListView />
         </div>
+        <Billing />
       </div>
       
     )
