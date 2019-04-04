@@ -12,6 +12,9 @@ class Billing extends React.Component {
         this.onToken = this.onToken.bind(this);
     }
 
+    // Local testing URL
+    // "http://localhost:8000/api/stripe/subscription"
+
     async onToken(token) {
       let response = await fetch(
         "https://focustimer-labs11.herokuapp.com/api/stripe/subscription",
@@ -55,7 +58,7 @@ class Billing extends React.Component {
                 <h2 className="billing-card-title">Focus Plus</h2>
                 <h3 className="billing-card-subtitle">$12.99/annual</h3>
                 <p className="billing-card-text">
-                  Click here for $10 a month subscription
+                  Click here for a $12.99 annual subscription
                 </p>
                 <ul>
                   <li>50 Users</li>
