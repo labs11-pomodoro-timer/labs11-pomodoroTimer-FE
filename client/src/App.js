@@ -20,7 +20,8 @@ class App extends Component {
     return (
       <div className="App">
         <Profile />
-        <PremiumView />
+        {/* premiumview not ready */}
+        {/* <PremiumView /> */}
         <div className="name-container">
           <UserListView />
         </div>
