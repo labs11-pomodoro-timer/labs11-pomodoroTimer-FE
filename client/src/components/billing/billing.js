@@ -61,9 +61,9 @@ class Billing extends React.Component {
                   Click here for a $12.99 annual subscription
                 </p>
                 <ul>
-                  <li>50 Users</li>
-                  <li>10000 Messages</li>
-                  <li>50 Channels</li>
+                  <li>Ephemeral messages during Focus Time that YOU choose</li>
+                  <li>Customizeable front-end to view Focus Timer in browser</li>
+                  <li>Support development!</li>
                 </ul>
                 <StripeCheckout
                   className="stripe-checkout"
