@@ -49,9 +49,9 @@ class Billing extends React.Component {
           );
         } else {
           return (
-            <div className="billingpage-container">
+            <div className="billing-container">
             <div className="billingcontent-container">
-              <h1 className="billing-title">Billing</h1>
+              {/* <h1 className="billing-title">Billing</h1> */}
 
               <div className="billing-card-container">
               <div className="billing-card-body">
@@ -60,11 +60,9 @@ class Billing extends React.Component {
                 <p className="billing-card-text">
                   Click here for a $12.99 annual subscription
                 </p>
-                <ul>
-                  <li>Ephemeral messages during Focus Time that YOU choose</li>
-                  <li>Customizeable front-end to view Focus Timer in browser</li>
-                  <li>Support development!</li>
-                </ul>
+                <p className="list">Ephemeral messages during Focus Time that YOU choose</p>
+                <p className="list">Customizeable front-end to view Focus Timer in browser</p>
+                <p className="list">Support development!</p>
                 <StripeCheckout
                   className="stripe-checkout"
                   token={this.onToken}

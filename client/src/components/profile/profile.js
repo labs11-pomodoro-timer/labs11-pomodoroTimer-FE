@@ -16,7 +16,12 @@ class Profile extends React.Component {
     render() {
         return (
             <div className="Profile">
-               <h1>You have successfully logged in!</h1>
+               <div className="timer-btns">
+                    <button className="focus-btn">Focus 25</button>
+                    <button className="focus-btn">Short 5</button>
+                    <button className="focus-btn">Long 15</button>
+               </div>
+               <button className="start-btn">Start</button>
             </div>
         )
     }
