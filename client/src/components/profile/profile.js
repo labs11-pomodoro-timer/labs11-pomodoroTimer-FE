@@ -14,6 +14,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { timer } from '../../actions/index.js';
+import Button from 'react-bootstrap/Button';
 
 class Profile extends React.Component {
 
@@ -33,11 +34,11 @@ class Profile extends React.Component {
         return (
             <div className="Profile">
                <div className="timer-btns">
-                    <button className="focus-btn" onClick={this.startfocus} >Focus 25</button>
-                    <button className="focus-btn" onClick={this.startShort} >Short 5</button>
-                    <button className="focus-btn" onClick={this.startLong} >Long 15</button>
+                    <Button className="focus-btn" onClick={this.startfocus} variant="secondary" >Focus 25</Button>
+                    <Button className="focus-btn" onClick={this.startShort} variant="secondary" >Short 5</Button>
+                    <Button className="focus-btn" onClick={this.startLong} variant="secondary" >Long 15</Button>
                </div>
-               <button className="start-btn">Start</button>
+               <Button className="start-btn" variant="secondary" >Start</Button>
             </div>
         )
     }
