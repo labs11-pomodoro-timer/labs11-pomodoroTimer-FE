@@ -13,7 +13,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { timer } from '../actions';
+import { timer } from '../../actions/index.js';
 
 class Profile extends React.Component {
 
@@ -21,13 +21,21 @@ class Profile extends React.Component {
         this.props.timer('focus');
     }
 
+    startShort = () => {
+        this.props.timer('short');
+    }
+
+    startLong = () => {
+        this.props.timer('long');
+    }
+
     render() {
         return (
             <div className="Profile">
                <div className="timer-btns">
-                    <button className="focus-btn">Focus 25</button>
-                    <button className="focus-btn">Short 5</button>
-                    <button className="focus-btn">Long 15</button>
+                    <button className="focus-btn" onClick={this.startfocus} >Focus 25</button>
+                    <button className="focus-btn" onClick={this.startShort} >Short 5</button>
+                    <button className="focus-btn" onClick={this.startLong} >Long 15</button>
                </div>
                <button className="start-btn">Start</button>
             </div>

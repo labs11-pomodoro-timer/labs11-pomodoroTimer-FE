@@ -23,7 +23,7 @@ export const START_TIME_FAILURE = 'START_TIME_FAILURE';
 export const timer = (time) => dispatch => {
   dispatch({ type: START_TIME });
   axios
-    .get(`https://focustimer-labs11.herokuapp.com/api/timer/start/${time}`)
+    .get(`http://localhost:8000/api/timer/start/${time}`)
     .then(response => {
       dispatch({ type: START_TIME_SUCCESS, payload: response.data });
     })
