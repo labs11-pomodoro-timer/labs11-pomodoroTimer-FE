@@ -12,7 +12,15 @@
 
 import React from "react";
 
+import { connect } from "react-redux";
+import { timer } from '../actions';
+
 class Profile extends React.Component {
+
+    startfocus = () => {
+        this.props.timer('focus');
+    }
+
     render() {
         return (
             <div className="Profile">
@@ -27,4 +35,16 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+const mapStateToProps = ({ timerStarted }) => {
+    return {
+        timerStarted
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    {
+      /* action creators go here */
+      timer
+    }
+  )(Profile);
