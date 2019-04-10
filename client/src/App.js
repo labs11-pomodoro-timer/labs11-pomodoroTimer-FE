@@ -1,14 +1,13 @@
 import React, { Component, history } from 'react';
 import './App.css';
-import { Auth0Lock } from "auth0-lock";
-import Billing from './components/billing/billing';
+// import { Auth0Lock } from "auth0-lock";
+import Billing from './components/account_settings/account_settings.js';
 
 
-import Authenticate from './components/authentication/authentication'
+import Authenticate from './components/authentication/authentication.js'
 
-import Profile from "./components/profile/profile";
+import Profile from "./components/profile/profile.js";
 
-// import UserListView from './dummy-display/userListView';
 // import PremiumView from './components/billing/premiumView';
 
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
@@ -47,9 +46,6 @@ class App extends Component {
           {/* premiumview not ready */}
           {/* <PremiumView /> */}
           <Route exact path='/billing' component={Billing} />
-          {/* <div className="name-container">
-            <UserListView />
-          </div> */}
         </div>
       </Router>
     )
