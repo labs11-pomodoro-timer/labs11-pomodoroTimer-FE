@@ -4,12 +4,146 @@ import Button from 'react-bootstrap/Button';
 import UserListView from "../../dummy-display/userListView";
 import SlackButton from "../button/slackButton";
 
+function login(email, password, callback) {
+  
+
+  const bcrypt = require('bcrypt');
+  const postgres = require('pg');
+
+  const conString =  'postgres://focustimer-labs11.herokuapp.com/api/users';
+  postgres(conString, function (err, client, done) {
+    if (err) return callback(err);
+
+    const query = 'SELECT id, nickname, email, password FROM users WHERE email = $1';
+    client.query(query, [email], function (err, result) {
+      // NOTE: always call `done()` here to close
+      // the connection to the database
+      done();
+
+      if (err || result.rows.length === 0) return callback(err || new WrongUsernameOrPasswordError(email));
+
+      const user = result.rows[0];
+
+      bcrypt.compare(password, user.password, function (err, isValid) {
+        if (err || !isValid) return callback(err || new WrongUsernameOrPasswordError(email));
+
+        return callback(null, {
+          user_id: user.id,
+          nickname: user.nickname,
+          email: user.email
+        });
+      });
+    });
+  });
+}
+
+function create(user, callback) {
+  
+
+  const bcrypt = require('bcrypt');
+  const postgres = require('pg');
+
+  const conString =  'postgres://focustimer-labs11.herokuapp.com/api/users';
+  postgres(conString, function (err, client, done) {
+    if (err) return callback(err);
+
+    bcrypt.hash(user.password, 10, function (err, hashedPassword) {
+      if (err) return callback(err);
+
+      const query = 'INSERT INTO users(email, password) VALUES ($1, $2)';
+      client.query(query, [user.email, hashedPassword], function (err, result) {
+        // NOTE: always call `done()` here to close
+        // the connection to the database
+        done();
+
+        return callback(err);
+      });
+    });
+  });
+}
+
+
+function changePassword (email, newPassword, callback) {
+  
+
+  const bcrypt = require('bcrypt');
+  const postgres = require('pg');
+
+  const conString =  'postgres://focustimer-labs11.herokuapp.com/api/users';
+  postgres(conString, function (err, client, done) {
+    if (err) return callback(err);
+
+    bcrypt.hash(newPassword, 10, function (err, hash) {
+      if (err) return callback(err);
+
+      const query = 'UPDATE users SET password = $1 WHERE email = $2';
+      client.query(query, [hash, email], function (err, result) {
+        // NOTE: always call `done()` here to close
+        // the connection to the database
+        done();
+
+        return callback(err, result && result.rowCount > 0);
+      });
+    });
+  });
+}
+
+function loginByEmail(email, callback) {
+  
+
+  const postgres = require('pg');
+
+  const conString =  'postgres://focustimer-labs11.herokuapp.com/api/users';
+  postgres(conString, function (err, client, done) {
+    if (err) return callback(err);
+
+    const query = 'SELECT id, nickname, email FROM users WHERE email = $1';
+    client.query(query, [email], function (err, result) {
+      // NOTE: always call `done()` here to close
+      // the connection to the database
+      done();
+
+      if (err || result.rows.length === 0) return callback(err);
+
+      const user = result.rows[0];
+
+      return callback(null, {
+        user_id: user.id,
+        nickname: user.nickname,
+        email: user.email
+      });
+    });
+  });
+}
+
+function remove(id, callback) {
+  
+
+  const postgres = require('pg');
+
+  const conString =  'postgres://focustimer-labs11.herokuapp.com/api/users';
+  postgres(conString, function (err, client, done) {
+    if (err) return callback(err);
+
+    const query = 'DELETE FROM users WHERE id = $1';
+    client.query(query, [id], function (err) {
+      // NOTE: always call `done()` here to close
+      // the connection to the database
+      done();
+
+      return callback(err);
+    });
+  });
+
+}
+
+
 
 
 // Auth0Lock options (testing purposes)
 // var options = {
 //   auth: {
-//     redirectUrl: 'https://client.mjhacker.now.sh/'
+//     redirectUrl:  'postgres://client.mjhacker.now.sh/'
 //   }
 // };
 
