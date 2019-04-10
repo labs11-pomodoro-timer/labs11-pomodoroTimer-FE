@@ -15,3 +15,19 @@ export const fetchUsers = () => dispatch => {
       dispatch({ type: FETCHING_USERS_FAILURE, payload: error });
     });
 };
+
+export const GET_TIME = 'GET_TIME';
+export const GET_TIME_SUCCESS = 'GET_TIME_SUCCESS';
+export const GET_TIME_FAILURE = 'GET_TIME_FAILURE';
+
+export const getTime = (id) => dispatch => {
+  dispatch({ type: GET_TIME });
+  axios
+    .get(`https://localhost:8000/api/timer/checkTimer/${id}`)
+    .then(response => {
+      dispatch({ type: GET_TIME_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: GET_TIME_FAILURE, payload: error });
+    });
+};
