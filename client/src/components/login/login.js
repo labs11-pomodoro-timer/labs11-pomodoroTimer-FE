@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Auth0Lock } from "auth0-lock"
 import Button from 'react-bootstrap/Button';
+import bcrypt from 'bcrypt';
+import auth0 from "auth0-js";
 import UserListView from "../../dummy-display/userListView";
 import SlackButton from "../button/slackButton";
 
@@ -109,7 +111,7 @@ function loginByEmail(email, callback) {
 
       return callback(null, {
         user_id: user.id,
-        nickname: user.nickname,
+        name: user.firstname,
         email: user.email
       });
     });
