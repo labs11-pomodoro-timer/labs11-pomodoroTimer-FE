@@ -14,13 +14,17 @@ import SlackButton from "../button/slackButton";
 // };
 
 var options = {
-
+  auth: {
+    params: {
+      scope: 'openid profile email'
+    }
+  }
 };
 
 // The lock function contains 2 arguments, the Client ID and the domain
 var lock = new Auth0Lock(
-    '2u1N0tM8yEP53wgkylA3xdP0WqNLq0xr',
-    'mjhacker.auth0.com',
+    'f4fmRQmmf6YrrsMPmWDyVD3SAWB9258r',
+    'focus-timer.auth0.com',
     options
   );
 
@@ -42,6 +46,7 @@ class Login extends Component {
                 
               localStorage.setItem('accessToken', authResult.accessToken);
               localStorage.setItem('profile', JSON.stringify(profile));
+              localStorage.setItem('isLoggedIn', true);
               window.location.reload();
             }});
           });
