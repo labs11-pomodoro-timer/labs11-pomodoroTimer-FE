@@ -1,4 +1,4 @@
-// User's slack avatar should be auto-populated or able to manually upload a pic
+// User's slack avatar should be auto-populated
 
 // Slack integration should be possible with on click authentication
 
@@ -13,10 +13,12 @@
 import React from "react";
 
 class Profile extends React.Component {
+    // componentDidMount() {
+    //     this.
+    // }
     render() {
         return (
             <div className="Profile">
-               <h1>You have successfully logged in!</h1>
             </div>
         )
     }
