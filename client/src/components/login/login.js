@@ -137,16 +137,6 @@ function remove(id, callback) {
 
 }
 
-
-
-
-// Auth0Lock options (testing purposes)
-// var options = {
-//   auth: {
-//     redirectUrl:  'postgres://client.mjhacker.now.sh/'
-//   }
-// };
-
 var options = {
 
 };
