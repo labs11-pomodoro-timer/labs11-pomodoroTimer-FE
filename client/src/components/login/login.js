@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Auth0Lock } from "auth0-lock"
 import Button from 'react-bootstrap/Button';
-import UserListView from "../../dummy-display/userListView";
 import SlackButton from "../button/slackButton";
 
 

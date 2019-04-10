@@ -44,7 +44,7 @@ export const FETCH_EMAIL_FAILURE = 'FETCH_EMAIL_FAILURE';
 export const getEmail = (email) => dispatch => {
   axios
     // .get(`https://focustimer-labs11.herokuapp.com/api/users/${email}`)
-    .get(`https://localhost:8000/api/users/${email}`)
+    .get(`http://localhost:8000/api/users/${email}`)
     .then(res => {
       dispatch({ type: FETCH_EMAIL_FOUND, payload: res.data });
     })
