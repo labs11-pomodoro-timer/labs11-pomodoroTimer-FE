@@ -27,9 +27,9 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
+      firstName: localStorage.getItem('firstName'),
+      lastName: localStorage.getItem('lastName'),
+      email: localStorage.getItem('email'),
       view: '',
       initial: false,
       modalShow: true,
@@ -38,23 +38,6 @@ class App extends Component {
   }
 
 
-
-  componentDidMount() {
-    // getEmail(localStorage.getItem(profile.email));
-    // console.log(localStorage.getItem('profile'));
-    // this.setState({
-    //   initial: true
-    // })
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.users.length !== prevProps.users.length) {
-  //     localStorage.setItem('id', this.props.users[0].id)
-  //     this.setState({
-  //       initial: false
-  //     })
-  //   }
-  // }
 
   handleClose() {
     this.setState({ modalShow: false });
@@ -70,22 +53,21 @@ class App extends Component {
     });
   };
 
-  submitHandler = (event) => {
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
+  submitHandler = () => {
+    
+    // let firstName = this.state.firstName;
+    // let lastName = this.state.lastName;
+    // let email = this.state.email;
+    // let combine = {
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   email: email
     // }
-    // event.preventDefault();
-    let firstName = this.state.firstName;
-    let lastName = this.state.lastName;
-    let email = this.state.email;
-    let combine = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email
-    }
-    axios.post('http://localhost:8000/api/users', { combine })
+    axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email
+     })
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
     this.setState({
@@ -166,7 +148,7 @@ class App extends Component {
                     name='firstName'
                     placeholder='firstName'
                     value={this.state.firstName}
-                    // {...createInput('firstName')}
+                    
                   />
                 </Form.Row>
                 <Form.Row>
@@ -177,7 +159,7 @@ class App extends Component {
                     name='lastName'
                     placeholder='lastName'
                     value={this.state.lastName}
-                    // {...createInput('lastName')}
+                    
                   />
                 </Form.Row>
                 <Form.Row>
@@ -188,7 +170,7 @@ class App extends Component {
                     name='email'
                     placeholder='email'
                     value={this.state.email}
-                    // {...createInput('email')}
+                    
                   />
                 </Form.Row>
               </Form>

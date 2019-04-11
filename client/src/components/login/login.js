@@ -42,6 +42,8 @@ class Login extends Component {
               localStorage.setItem('accessToken', authResult.accessToken);
               localStorage.setItem('profile', JSON.stringify(profile));
               localStorage.setItem('email', profile.email);
+              localStorage.setItem('firstName', profile.given_name);
+              localStorage.setItem('lastName', profile.family_name);
               window.location.reload();
             }});
           });
