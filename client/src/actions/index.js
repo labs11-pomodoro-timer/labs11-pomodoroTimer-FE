@@ -56,3 +56,21 @@ export const getEmail = (email) => dispatch => {
       }
     });
 }
+
+export const ADD_USER = 'ADD_USER';
+export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
+export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
+
+export const addUser = () => dispatch => {
+  dispatch({ type: ADD_USER });
+  axios
+    // http://localhost:8000/api/users
+    // https://focustimer-labs11.herokuapp.com/api/users
+    .post(`http://localhost:8000/api/users`)
+    .then(response => {
+      dispatch({ type: ADD_USER_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_USER_FAILURE, payload: error });
+    });
+};

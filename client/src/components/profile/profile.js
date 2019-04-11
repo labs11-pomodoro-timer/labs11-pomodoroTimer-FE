@@ -25,18 +25,18 @@ class Profile extends React.Component {
     render() {
         return (
             <div className="Profile">
-               <div className="timer-btns">
+                <div className="timer-btns">
                     <Button className="focus-btn" onClick={() => this.props.timer('focus')} variant="secondary" >
                         Focus 25
                     </Button>
                     <Button className="focus-btn" onClick={() => this.props.timer('long')} variant="secondary" >
                         Long 15
                     </Button>
-                    <Button className="focus-btn" onClick={() =>  this.props.timer('short')} variant="secondary" >
+                    <Button className="focus-btn" onClick={() => this.props.timer('short')} variant="secondary" >
                         Short 5
                     </Button>
-               </div>
-               <Button className="start-btn" variant="secondary" >Start</Button>
+                </div>
+                <Button className="start-btn" variant="secondary" >Start</Button>
             </div>
         )
     }
@@ -47,13 +47,13 @@ const mapStateToProps = ({ timerStarted, gettingTime }) => {
         timerStarted,
         gettingTime
     };
-  };
-  
-  export default connect(
+};
+
+export default connect(
     mapStateToProps,
     {
-      /* action creators go here */
-      timer,
-      getTime
+        /* action creators go here */
+        timer,
+        getTime
     }
-  )(Profile);
+)(Profile);
