@@ -3,12 +3,11 @@ import './App.css';
 // import { Auth0Lock } from "auth0-lock";
 import Billing from './components/account_settings/account_settings.js';
 
-
 import Authenticate from './components/authentication/authentication.js'
 
-import Profile from "./components/profile/profile.js";
+// import Modal from 'react-bootstrap/Modal';
 
-// import PremiumView from './components/billing/premiumView';
+import Profile from './components/profile/profile.js';
 
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 
@@ -43,8 +42,6 @@ class App extends Component {
             </NavLink>
           </div>
           <Route exact path='/' component={Profile} />
-          {/* premiumview not ready */}
-          {/* <PremiumView /> */}
           <Route exact path='/billing' component={Billing} />
         </div>
       </Router>
