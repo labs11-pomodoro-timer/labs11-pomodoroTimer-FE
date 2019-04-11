@@ -9,7 +9,7 @@ import StripeCheckout from "react-stripe-checkout";
 class Billing extends React.Component {
   constructor() {
     super();
-    this.state = { complete: false, email: '', password: '' };
+    this.state = { complete: false };
     this.onToken = this.onToken.bind(this);
   }
 

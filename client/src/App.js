@@ -5,47 +5,217 @@ import Billing from './components/account_settings/account_settings.js';
 
 import Authenticate from './components/authentication/authentication.js'
 
-// import Modal from 'react-bootstrap/Modal';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 import Profile from './components/profile/profile.js';
 
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import { connect } from "react-redux";
+import { addUser, getEmail } from './actions/index.js';
 
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import axios from 'axios';
+
+const profile = localStorage.getItem('profile');
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      view: '',
+      initial: false,
+      modalShow: true,
+      validated: false
+    }
+  }
+
+
+
+  componentDidMount() {
+    // getEmail(localStorage.getItem(profile.email));
+    // console.log(localStorage.getItem('profile'));
+    // this.setState({
+    //   initial: true
+    // })
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.users.length !== prevProps.users.length) {
+  //     localStorage.setItem('id', this.props.users[0].id)
+  //     this.setState({
+  //       initial: false
+  //     })
+  //   }
+  // }
+
+  handleClose() {
+    this.setState({ modalShow: false });
+  }
+
+  handleShow() {
+    this.setState({ modalShow: true });
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  submitHandler = (event) => {
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
+    // event.preventDefault();
+    let firstName = this.state.firstName;
+    let lastName = this.state.lastName;
+    let email = this.state.email;
+    let combine = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email
+    }
+    axios.post('http://localhost:8000/api/users', { combine })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+    this.setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      view: 'done',
+      validated: true
+    })
+  }
+
+  submit = () => {
+    this.handleClose();
+    this.submitHandler();
+  }
 
   logout = () => {
     window.localStorage.clear();
     window.location.reload();
     history.push('/');
   }
-  
+
   render() {
+    // const createInput = text => (
+    //   <input
+    //     type='text'
+    //     onChange={this.handleChange}
+    //     name={text}
+    //     placeholder={text}
+    //     value={this.state[text]}
+    //   />
+    // );
+
+    const { validated } = this.state;
+    
     return (
-      <Router>
-        <div className="App">
-          <div className="nav-bar">
-            <NavLink exact to='/' className="links" >
-              Profile
+      <div>
+        <Router>
+          <div className="App">
+            <div className="nav-bar">
+              <NavLink exact to='/' className="links" >
+                Profile
             </NavLink>
 
-            <NavLink exact to='/billing' className="links" >
-              Billing
+              <NavLink exact to='/billing' className="links" >
+                Billing
             </NavLink>
 
-            <NavLink exact to='/settings' className="links" >
-              Settings
+              <NavLink exact to='/settings' className="links" >
+                Settings
             </NavLink>
 
-            <NavLink to='/' className="links" onClick={this.logout} >
-              Logout
+              <NavLink to='/' className="links" onClick={this.logout} >
+                Logout
             </NavLink>
+            </div>
+            <Route exact path='/' component={Profile} />
+            <Route exact path='/billing' component={Billing} />
           </div>
-          <Route exact path='/' component={Profile} />
-          <Route exact path='/billing' component={Billing} />
+        </Router>
+        <div className="Modal">
+          <Button onClick={this.handleShow}>Click Me to Register</Button>
+          <Modal show={this.state.modalShow} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Please Confirm Details</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={this.submitHandler}
+              >
+                <Form.Row>
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type='text'
+                    onChange={this.handleChange}
+                    name='firstName'
+                    placeholder='firstName'
+                    value={this.state.firstName}
+                    // {...createInput('firstName')}
+                  />
+                </Form.Row>
+                <Form.Row>
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type='text'
+                    onChange={this.handleChange}
+                    name='lastName'
+                    placeholder='lastName'
+                    value={this.state.lastName}
+                    // {...createInput('lastName')}
+                  />
+                </Form.Row>
+                <Form.Row>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type='text'
+                    onChange={this.handleChange}
+                    name='email'
+                    placeholder='email'
+                    value={this.state.email}
+                    // {...createInput('email')}
+                  />
+                </Form.Row>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={this.submit}>Submit</Button>
+              <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+            </Modal.Footer>
+          </Modal>
         </div>
-      </Router>
+      </div>
     )
-  } 
+  }
 }
-export default Authenticate(App);
+// export default Authenticate(App);
+
+const mapStateToProps = ({ gettingEmail, users }) => {
+  return {
+    gettingEmail,
+    users
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    /* action creators go here */
+    getEmail,
+  }
+)(Authenticate(App));

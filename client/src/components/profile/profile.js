@@ -19,7 +19,7 @@ import Button from 'react-bootstrap/Button';
 class Profile extends React.Component {
 
     componentDidMount() {
-        this.props.getTime(); // pass id into getTime
+        // this.props.getTime(); // pass id into getTime
     }
 
     render() {
@@ -54,6 +54,6 @@ export default connect(
     {
         /* action creators go here */
         timer,
-        getTime
+        getTime,
     }
 )(Profile);

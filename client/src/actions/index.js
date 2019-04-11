@@ -42,11 +42,13 @@ export const FETCH_EMAIL_NOTFOUND = 'FETCH_EMAIL_NOTFOUND';
 export const FETCH_EMAIL_FAILURE = 'FETCH_EMAIL_FAILURE';
 
 export const getEmail = (email) => dispatch => {
+  dispatch({ type: FETCH_EMAIL });
   axios
     // .get(`https://focustimer-labs11.herokuapp.com/api/users/${email}`)
     .get(`http://localhost:8000/api/users/${email}`)
     .then(res => {
       dispatch({ type: FETCH_EMAIL_FOUND, payload: res.data });
+      localStorage.setItem('id', res.data[0].id)
     })
     .catch(err => {
       if (FETCH_EMAIL_NOTFOUND) {
@@ -56,21 +58,3 @@ export const getEmail = (email) => dispatch => {
       }
     });
 }
-
-export const ADD_USER = 'ADD_USER';
-export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
-export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
-
-export const addUser = () => dispatch => {
-  dispatch({ type: ADD_USER });
-  axios
-    // http://localhost:8000/api/users
-    // https://focustimer-labs11.herokuapp.com/api/users
-    .post(`http://localhost:8000/api/users`)
-    .then(response => {
-      dispatch({ type: ADD_USER_SUCCESS, payload: response.data });
-    })
-    .catch(error => {
-      dispatch({ type: ADD_USER_FAILURE, payload: error });
-    });
-};
