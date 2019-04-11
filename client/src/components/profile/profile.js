@@ -13,47 +13,47 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { timer } from '../../actions/index.js';
+import { timer, getTime } from '../../actions/index.js';
 import Button from 'react-bootstrap/Button';
 
 class Profile extends React.Component {
 
-    startfocus = () => {
-        this.props.timer('focus');
-    }
-
-    startShort = () => {
-        this.props.timer('short');
-    }
-
-    startLong = () => {
-        this.props.timer('long');
+    componentDidMount() {
+        // this.props.getTime(); // pass id into getTime
     }
 
     render() {
         return (
             <div className="Profile">
-               <div className="timer-btns">
-                    <Button className="focus-btn" onClick={this.startfocus} variant="secondary" >Focus 25</Button>
-                    <Button className="focus-btn" onClick={this.startShort} variant="secondary" >Short 5</Button>
-                    <Button className="focus-btn" onClick={this.startLong} variant="secondary" >Long 15</Button>
-               </div>
-               <Button className="start-btn" variant="secondary" >Start</Button>
+                <div className="timer-btns">
+                    <Button className="focus-btn" onClick={() => this.props.timer('focus')} variant="secondary" >
+                        Focus 25
+                    </Button>
+                    <Button className="focus-btn" onClick={() => this.props.timer('long')} variant="secondary" >
+                        Long 15
+                    </Button>
+                    <Button className="focus-btn" onClick={() => this.props.timer('short')} variant="secondary" >
+                        Short 5
+                    </Button>
+                </div>
+                <Button className="start-btn" variant="secondary" >Start</Button>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ timerStarted }) => {
+const mapStateToProps = ({ timerStarted, gettingTime }) => {
     return {
-        timerStarted
+        timerStarted,
+        gettingTime
     };
-  };
-  
-  export default connect(
+};
+
+export default connect(
     mapStateToProps,
     {
-      /* action creators go here */
-      timer
+        /* action creators go here */
+        timer,
+        getTime,
     }
-  )(Profile);
+)(Profile);

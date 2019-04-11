@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Auth0Lock } from "auth0-lock"
 import Button from 'react-bootstrap/Button';
-import UserListView from "../../dummy-display/userListView";
 import SlackButton from "../button/slackButton";
 
 
@@ -42,6 +41,7 @@ class Login extends Component {
                 
               localStorage.setItem('accessToken', authResult.accessToken);
               localStorage.setItem('profile', JSON.stringify(profile));
+              localStorage.setItem('email', profile.email);
               window.location.reload();
             }});
           });
