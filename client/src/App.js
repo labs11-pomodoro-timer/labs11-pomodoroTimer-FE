@@ -30,6 +30,10 @@ class App extends Component {
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
+      phone: localStorage.getItem('phone'),
+      timerName: localStorage.getItem('timerName'),
+      timerStart: localStorage.getItem('timerStart'),
+      timerEnd: localStorage.getItem('timerEnd'),
       view: '',
       initial: false,
       modalShow: true,
@@ -55,14 +59,21 @@ class App extends Component {
 
   submitHandler = () => {
     // http://localhost:8000/api/users
+    // https://focustimer-labs11.herokuapp.com/api/users
 
-    axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
+    axios.post('http://localhost:8000/api/users', { 
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email
      })
       .then(res => 
-        this.setState({ id: localStorage.setItem('id', res.data.id) })
+        this.setState({
+          id: localStorage.setItem('id', res.data.id),
+          phone: localStorage.setItem('phone', res.data.phone),
+          timerName: localStorage.setItem('timerName', res.data.timerName),
+          timerStart: localStorage.setItem('timerStart', res.data.timerStart),
+          timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd),
+        })
         // console.log(res.data.id)
       )
       .catch(err => console.log(err));
