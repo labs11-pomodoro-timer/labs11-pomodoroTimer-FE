@@ -15,6 +15,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { timer, getTime } from '../../actions/index.js';
 import Button from 'react-bootstrap/Button';
+import TimerView from '../timer_view/TimerView';
 
 class Profile extends React.Component {
 
@@ -37,6 +38,9 @@ class Profile extends React.Component {
                     </Button>
                 </div>
                 <Button className="start-btn" variant="secondary" >Start</Button>
+                <div className="timer-view">
+                    <TimerView />
+                </div>
             </div>
         )
     }

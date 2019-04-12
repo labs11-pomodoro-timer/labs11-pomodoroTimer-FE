@@ -30,6 +30,10 @@ class App extends Component {
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
+      phone: localStorage.getItem('phone'),
+      timerName: localStorage.getItem('timerName'),
+      timerStart: localStorage.getItem('timerStart'),
+      timerEnd: localStorage.getItem('timerEnd'),
       view: '',
       initial: false,
       modalShow: true,
@@ -68,15 +72,20 @@ class App extends Component {
       lastName: this.state.lastName,
       email: this.state.email
      })
-      .then(res => console.log(res.data))
+      .then(res => {
+        this.setState({
+          firstName: res.data.firstname,
+          lastName: res.data.lastname,
+          email: res.data.email,
+          phone: res.data.phone,
+          timerName: res.data.timerName,
+          timerStart: res.data.timerStart,
+          timerEnd: res.data.timerEnd,
+          view: 'done',
+          validated: true
+        })
+      })
       .catch(err => console.log(err));
-    this.setState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      view: 'done',
-      validated: true
-    })
   }
 
   submit = () => {
