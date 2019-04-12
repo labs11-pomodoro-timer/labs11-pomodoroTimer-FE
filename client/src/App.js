@@ -17,7 +17,6 @@ import { addUser, getEmail } from './actions/index.js';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import axios from 'axios';
 
-const profile = localStorage.getItem('profile');
 
 class App extends Component {
   constructor() {
@@ -27,6 +26,7 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
+      id: '',
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
@@ -68,7 +68,9 @@ class App extends Component {
       lastName: this.state.lastName,
       email: this.state.email
      })
-      .then(res => console.log(res.data))
+      .then(res => 
+        this.setState({ id: res.data.id })
+      )
       .catch(err => console.log(err));
     this.setState({
       firstName: '',
@@ -78,6 +80,8 @@ class App extends Component {
       validated: true
     })
   }
+
+
 
   submit = () => {
     this.handleClose();
@@ -113,11 +117,7 @@ class App extends Component {
             </NavLink>
 
               <NavLink exact to='/billing' className="links" >
-                Billing
-            </NavLink>
-
-              <NavLink exact to='/settings' className="links" >
-                Settings
+                Account Settings
             </NavLink>
 
               <NavLink to='/' className="links" onClick={this.logout} >
@@ -129,7 +129,7 @@ class App extends Component {
           </div>
         </Router>
         <div className="Modal">
-          <Button onClick={this.handleShow}>Click Me to Register</Button>
+          <Button onClick={this.handleShow} className="modal-btn">Click Me to Register</Button>
           <Modal show={this.state.modalShow} onHide={this.handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Please Confirm Details</Modal.Title>
