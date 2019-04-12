@@ -41,8 +41,6 @@ class App extends Component {
     }
   }
 
-
-
   handleClose() {
     this.setState({ modalShow: false });
   }
