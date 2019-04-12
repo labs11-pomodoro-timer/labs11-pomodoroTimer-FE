@@ -27,6 +27,7 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
+      userId: null,
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
@@ -65,13 +66,16 @@ class App extends Component {
     //   lastName: lastName,
     //   email: email
     // }
-    axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
+    //! need to change address dev & prod
+    axios.post('https://localhost:8000/api/users', {
+      // 'https://focustimer-labs11.herokuapp.com
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email
      })
       .then(res => {
         this.setState({
+          userId: res.data.id,
           firstName: res.data.firstname,
           lastName: res.data.lastname,
           email: res.data.email,
