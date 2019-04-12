@@ -4,19 +4,43 @@ export const START_TIME = 'START_TIME';
 export const START_TIME_SUCCESS = 'START_TIME_SUCCESS';
 export const START_TIME_FAILURE = 'START_TIME_FAILURE';
 
-export const timer = (time) => dispatch => {
+export const timer = (time, id) => dispatch => {
   dispatch({ type: START_TIME });
   axios
     // http://localhost:8000/api/timer/start/${time}
     // https://focustimer-labs11.herokuapp.com/api/timer/start/${time}
-    .get(`https://focustimer-labs11.herokuapp.com/api/timer/start/${time}`)
+    .put(`https://focustimer-labs11.herokuapp.com/api/timer/startTimer/${id}/${time}`)
     .then(response => {
       dispatch({ type: START_TIME_SUCCESS, payload: response.data });
-      localStorage.setItem('time', response.data);
+      if (time === 'focus') {
+        localStorage.setItem('time', 1500)
+      } else if (time === 'long') {
+        localStorage.setItem('time', 900)
+      } else if (time === 'short') {
+        localStorage.setItem('time', 300)
+      }
       window.location.reload();
     })
     .catch(error => {
       dispatch({ type: START_TIME_FAILURE, payload: error });
+    });
+};
+
+export const STOP_TIME = 'STOP_TIME';
+export const STOP_TIME_SUCCESS = 'STOP_TIME_SUCCESS';
+export const STOP_TIME_FAILURE = 'STOP_TIME_FAILURE';
+
+export const stopTimer = (id) => dispatch => {
+  dispatch({ type: STOP_TIME });
+  axios
+    // http://localhost:8000/api/timer/stopTimer/${id}
+    // https://focustimer-labs11.herokuapp.com/api/timer/stopTimer/${id}
+    .put(`https://focustimer-labs11.herokuapp.com/api/timer/stopTimer/${id}`)
+    .then(response => {
+      dispatch({ type: STOP_TIME_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: STOP_TIME_FAILURE, payload: error });
     });
 };
 
