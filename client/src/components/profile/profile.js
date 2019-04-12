@@ -26,7 +26,7 @@ class Profile extends React.Component {
         return (
             <div className="Profile">
                 <div className="timer-btns">
-                    <Button className="focus-btn" onClick={() => this.props.timer('focus')} variant="secondary" >
+                    <Button className="focus-btn" onClick={() => this.props.timer('focus', localStorage.getItem('id'))} variant="secondary" >
                         Focus 25
                     </Button>
                     <Button className="focus-btn" onClick={() => this.props.timer('long')} variant="secondary" >
