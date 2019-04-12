@@ -51,7 +51,7 @@ class Billing extends React.Component {
 
   submitEmailHandler = () => {
     const { id } = this.state.id;
-    axios.put(`https://focustimer-labs11.herokuapp.com/api/users/${id}`, { 
+    axios.put(`http://localhost:8000/api/users/${id}`, { 
       email: this.state.changeEmail
      })
       .then(res => console.log(res.data))
@@ -72,10 +72,10 @@ class Billing extends React.Component {
               <Form.Label>Change Email</Form.Label>
               <Form.Control
                 type='text'
-                onChange={this.handleChange}
-                name='Email'
+                onChange={this.handleEmailChange}
+                name='changeEmail'
                 placeholder='Email'
-                value={this.state.email}
+                value={this.state.changeEmail}
                     
               />
             </Form.Row>

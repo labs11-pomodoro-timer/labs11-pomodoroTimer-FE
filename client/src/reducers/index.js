@@ -8,10 +8,7 @@ import {
   FETCH_EMAIL,
   FETCH_EMAIL_FOUND,
   FETCH_EMAIL_NOTFOUND,
-  FETCH_EMAIL_FAILURE,
-  ADD_USER,
-  ADD_USER_SUCCESS,
-  ADD_USER_FAILURE
+  FETCH_EMAIL_FAILURE
 } from "../actions";
 
 const initialState = {

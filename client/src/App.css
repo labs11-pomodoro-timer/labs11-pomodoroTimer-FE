@@ -86,6 +86,7 @@
   width: 30%;
   border: 1px solid black;
   padding: 2%;
+  border-radius: 10px;
 }
 
 .form-btn {
