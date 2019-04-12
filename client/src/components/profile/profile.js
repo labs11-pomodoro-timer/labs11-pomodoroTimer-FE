@@ -17,10 +17,44 @@ import { timer, getTime } from '../../actions/index.js';
 import Button from 'react-bootstrap/Button';
 
 class Profile extends React.Component {
+    constructor() {
+        super();
+    
+        this.state = {
+          countdown: 120
+        };
+    
+        this.formatTime = this.formatTime.bind(this);
+    }
 
     componentDidMount() {
         // this.props.getTime(); // pass id into getTime
+        this.time = setInterval(this.timers, 1000);
+        
     }
+
+    componentWillUnmount() {
+        clearInterval(this.time);
+    }
+
+    // componentDidUpdate() 
+
+    timers = () => {
+        const count = this.state.countdown - 1;
+        if (count >= 0) {
+          this.setState({ countdown: count });
+      }
+    }
+    
+    formatTime = () => {
+        const countdown = this.state.countdown;
+        const minutesOutput = Math.floor(
+            (countdown / 60).toString().padStart(2, "0")
+        );
+        const secondsOutput = (this.state.countdown % 60).toString().padStart(2, "0");
+        return `${minutesOutput}:${secondsOutput}`;
+    }
+
 
     render() {
         return (
@@ -35,6 +69,9 @@ class Profile extends React.Component {
                     <Button className="focus-btn" onClick={() => this.props.timer('short')} variant="secondary" >
                         Short 5
                     </Button>
+                </div>
+                <div id="time-left" className="display">
+                    {this.formatTime(this.state.countdown)}
                 </div>
                 <Button className="start-btn" variant="secondary" >Start</Button>
             </div>
