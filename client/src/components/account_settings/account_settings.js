@@ -50,7 +50,7 @@ class Billing extends React.Component {
   };
 
   submitEmailHandler = () => {
-    axios.put(`http://localhost:8000/api/users/${localStorage.getItem('id')}`, { 
+    axios.put(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('id')}`, { 
       email: this.state.changeEmail
      })
       .then(res => console.log(res.data))

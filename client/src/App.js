@@ -56,7 +56,7 @@ class App extends Component {
   submitHandler = () => {
     // http://localhost:8000/api/users
 
-    axios.post('http://localhost:8000/api/users', { 
+    axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email
