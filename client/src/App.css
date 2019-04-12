@@ -13,6 +13,14 @@
   color: white;
 }
 
+.display {
+  border: 1px solid black;
+  width: 10%;
+  margin-left: 45%;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
 .name-container {
   margin: 2% 34%;
   width: 30%;
@@ -157,5 +165,12 @@
 
   .form-btn {
     margin-top: 15px;
+  }
+
+  .display {
+    border: 1px solid black;
+    width: 94%;
+    margin: 3%;
+    font-size: 32px;
   }
 }
