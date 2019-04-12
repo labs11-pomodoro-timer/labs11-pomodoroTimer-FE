@@ -50,8 +50,7 @@ class Billing extends React.Component {
   };
 
   submitEmailHandler = () => {
-    const { id } = this.state.id;
-    axios.put(`http://localhost:8000/api/users/${id}`, { 
+    axios.put(`http://localhost:8000/api/users/${localStorage.getItem('id')}`, { 
       email: this.state.changeEmail
      })
       .then(res => console.log(res.data))
@@ -65,9 +64,7 @@ class Billing extends React.Component {
     return (
       <div>
         <div className="change-email">
-        <Form
-            onSubmit={this.submitEmailHandler}
-          >
+        <Form>
             <Form.Row>
               <Form.Label>Change Email</Form.Label>
               <Form.Control
@@ -79,7 +76,7 @@ class Billing extends React.Component {
                     
               />
             </Form.Row>
-            <Button className="form-btn">Submit</Button>
+            <Button className="form-btn" onClick={this.submitEmailHandler}>Submit</Button>
           </Form>
         </div>
         {this.state.complete ? (

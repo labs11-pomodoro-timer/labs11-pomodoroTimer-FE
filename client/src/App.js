@@ -26,7 +26,7 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      id: '',
+      id: localStorage.getItem('id'),
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
@@ -62,8 +62,8 @@ class App extends Component {
       email: this.state.email
      })
       .then(res => 
-        this.setState({ id: res.data.id })
-
+        this.setState({ id: localStorage.setItem('id', res.data.id) })
+        // console.log(res.data.id)
       )
       .catch(err => console.log(err));
     this.setState({
