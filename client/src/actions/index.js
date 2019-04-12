@@ -12,6 +12,8 @@ export const timer = (time) => dispatch => {
     .get(`https://focustimer-labs11.herokuapp.com/api/timer/start/${time}`)
     .then(response => {
       dispatch({ type: START_TIME_SUCCESS, payload: response.data });
+      localStorage.setItem('time', response.data);
+      window.location.reload();
     })
     .catch(error => {
       dispatch({ type: START_TIME_FAILURE, payload: error });

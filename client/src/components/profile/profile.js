@@ -15,13 +15,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { timer, getTime } from '../../actions/index.js';
 import Button from 'react-bootstrap/Button';
+import SlackButton from '../button/slackButton.js';
 
 class Profile extends React.Component {
     constructor() {
         super();
     
         this.state = {
-          countdown: 120
+          countdown: localStorage.getItem('time')
         };
     
         this.formatTime = this.formatTime.bind(this);
@@ -30,14 +31,22 @@ class Profile extends React.Component {
     componentDidMount() {
         // this.props.getTime(); // pass id into getTime
         this.time = setInterval(this.timers, 1000);
-        
     }
 
     componentWillUnmount() {
         clearInterval(this.time);
     }
 
-    // componentDidUpdate() 
+    componentDidUpdate() {
+        
+        console.log('timers');
+    }
+
+    stopTime = () => {
+        this.setState({
+            countdown: 0
+        })
+    }
 
     timers = () => {
         const count = this.state.countdown - 1;
@@ -69,11 +78,14 @@ class Profile extends React.Component {
                     <Button className="focus-btn" onClick={() => this.props.timer('short')} variant="secondary" >
                         Short 5
                     </Button>
+
                 </div>
                 <div id="time-left" className="display">
                     {this.formatTime(this.state.countdown)}
                 </div>
                 <Button className="start-btn" variant="secondary" >Start</Button>
+                <Button className="start-btn" variant="secondary" onClick={this.stopTime}>Stop</Button>
+                <SlackButton />
             </div>
         )
     }
