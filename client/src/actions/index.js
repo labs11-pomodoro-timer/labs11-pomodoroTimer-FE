@@ -9,7 +9,7 @@ export const timer = (time) => dispatch => {
   axios
     // http://localhost:8000/api/timer/start/${time}
     // https://focustimer-labs11.herokuapp.com/api/timer/start/${time}
-    .get(`http://localhost:8000/api/timer/start/${time}`)
+    .get(`https://focustimer-labs11.herokuapp.com/api/timer/start/${time}`)
     .then(response => {
       dispatch({ type: START_TIME_SUCCESS, payload: response.data });
     })
@@ -27,7 +27,7 @@ export const getTime = (id) => dispatch => {
   axios
     // http://localhost:8000/api/timer/checkTimer/${id}
     // https://focustimer-labs11.herokuapp.com/api/timer/checkTimer/${id}
-    .get(`http://localhost:8000/api/timer/checkTimer/${id}`)
+    .get(`https://focustimer-labs11.herokuapp.com/api/timer/checkTimer/${id}`)
     .then(response => {
       dispatch({ type: GET_TIME_SUCCESS, payload: response.data });
     })
@@ -45,7 +45,7 @@ export const getEmail = (email) => dispatch => {
   dispatch({ type: FETCH_EMAIL });
   axios
     // .get(`https://focustimer-labs11.herokuapp.com/api/users/${email}`)
-    .get(`http://localhost:8000/api/users/${email}`)
+    .get(`https://focustimer-labs11.herokuapp.com/api/users/${email}`)
     .then(res => {
       dispatch({ type: FETCH_EMAIL_FOUND, payload: res.data });
       localStorage.setItem('id', res.data[0].id)

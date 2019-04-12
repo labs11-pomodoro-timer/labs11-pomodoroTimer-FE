@@ -1,6 +1,10 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+
 // allow user to change email and password
 // collect payment info 
 // process payment through stripe
@@ -9,7 +13,7 @@ import StripeCheckout from "react-stripe-checkout";
 class Billing extends React.Component {
   constructor() {
     super();
-    this.state = { complete: false };
+    this.state = { complete: false, changeEmail: '' };
     this.onToken = this.onToken.bind(this);
   }
 
@@ -39,9 +43,42 @@ class Billing extends React.Component {
     console.log("Purchase Successful");
   }
 
+  handleEmailChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  submitEmailHandler = () => {
+    axios.put(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('id')}`, { 
+      email: this.state.changeEmail
+     })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+    this.setState({
+      changeEmail: '',
+    })
+  }
+
   render() {
     return (
       <div>
+        <div className="change-email">
+        <Form>
+            <Form.Row>
+              <Form.Label>Change Email</Form.Label>
+              <Form.Control
+                type='text'
+                onChange={this.handleEmailChange}
+                name='changeEmail'
+                placeholder='Email'
+                value={this.state.changeEmail}
+                    
+              />
+            </Form.Row>
+            <Button className="form-btn" onClick={this.submitEmailHandler}>Submit</Button>
+          </Form>
+        </div>
         {this.state.complete ? (
           <h5>
             <span className="badge badge-light">Status:</span>

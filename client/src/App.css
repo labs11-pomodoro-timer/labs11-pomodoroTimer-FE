@@ -76,3 +76,86 @@
   border-radius: 5px;
 }
 
+.modal-btn {
+ margin-top: 30px;
+ margin-left: 45.5%;
+}
+
+.change-email {
+  margin: 2% 33.5%;
+  width: 30%;
+  border: 1px solid black;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.form-btn {
+  margin-top: 15px;
+}
+
+@media(max-width: 650px) {
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .links {
+    margin-left: 0;
+    margin-bottom: 15px;
+    border-top: 1px solid black;
+    width: 100%;
+  }
+
+  .timer-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .focus-btn {
+    margin: 3%;
+    width: 94%;
+  }
+
+  .start-btn {
+   margin: 3%;
+   width: 94%;
+   height: 50px;
+  }
+
+  .Modal {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-btn {
+    width: 94%;
+    margin: 3%;
+    height: 50px;
+  }
+
+  .billing-container {
+    margin-left: 3%;
+    width: 94%;
+  }
+
+  .list {
+    line-height: 1.5;
+  }
+
+  .change-email {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 3%;
+    width: 94%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5%;
+  }
+
+  .form-btn {
+    margin-top: 15px;
+  }
+}

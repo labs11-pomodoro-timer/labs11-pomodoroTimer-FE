@@ -12,12 +12,11 @@ import Form from 'react-bootstrap/Form';
 import Profile from './components/profile/profile.js';
 
 import { connect } from "react-redux";
-import { addUser, getEmail } from './actions/index.js';
+import {  getEmail } from './actions/index.js';
 
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import axios from 'axios';
 
-const profile = localStorage.getItem('profile');
 
 class App extends Component {
   constructor() {
@@ -27,6 +26,7 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
+      id: localStorage.getItem('id'),
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
@@ -54,21 +54,17 @@ class App extends Component {
   };
 
   submitHandler = () => {
-    
-    // let firstName = this.state.firstName;
-    // let lastName = this.state.lastName;
-    // let email = this.state.email;
-    // let combine = {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email
-    // }
+    // http://localhost:8000/api/users
+
     axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email
      })
-      .then(res => console.log(res.data))
+      .then(res => 
+        this.setState({ id: localStorage.setItem('id', res.data.id) })
+        // console.log(res.data.id)
+      )
       .catch(err => console.log(err));
     this.setState({
       firstName: '',
@@ -113,11 +109,7 @@ class App extends Component {
             </NavLink>
 
               <NavLink exact to='/billing' className="links" >
-                Billing
-            </NavLink>
-
-              <NavLink exact to='/settings' className="links" >
-                Settings
+                Account Settings
             </NavLink>
 
               <NavLink to='/' className="links" onClick={this.logout} >
@@ -125,33 +117,40 @@ class App extends Component {
             </NavLink>
             </div>
             <Route exact path='/' component={Profile} />
-            <Route exact path='/billing' component={Billing} />
+            <Route exact path='/billing' render={props => <Billing 
+              {...props}
+              id={this.state.id}
+            />} />
           </div>
         </Router>
         <div className="Modal">
-          <Button onClick={this.handleShow}>Click Me to Register</Button>
-          <Modal show={this.state.modalShow} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Please Confirm Details</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form
-                noValidate
-                validated={validated}
-                onSubmit={this.submitHandler}
-              >
-                <Form.Row>
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control
-                    type='text'
-                    onChange={this.handleChange}
-                    name='firstName'
-                    placeholder='firstName'
-                    value={this.state.firstName}
-                    
-                  />
-                </Form.Row>
-                <Form.Row>
+            {this.state.view === 'done' ? (
+              <div></div>
+            ) : (
+              <div>
+                <Button onClick={this.handleShow} className="modal-btn">Click Me to Register</Button>
+                <Modal show={this.state.modalShow} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Please Confirm Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form
+                    noValidate
+                    validated={validated}
+                    onSubmit={this.submitHandler}
+                  >
+                  <Form.Row>
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                      type='text'
+                      onChange={this.handleChange}
+                      name='firstName'
+                      placeholder='firstName'
+                      value={this.state.firstName}
+                      
+                    />
+                  </Form.Row>
+                  <Form.Row>
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control
                     type='text'
@@ -161,25 +160,29 @@ class App extends Component {
                     value={this.state.lastName}
                     
                   />
-                </Form.Row>
-                <Form.Row>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type='text'
-                    onChange={this.handleChange}
-                    name='email'
-                    placeholder='email'
-                    value={this.state.email}
-                    
-                  />
-                </Form.Row>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={this.submit}>Submit</Button>
-              <Button variant="secondary" onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+                  </Form.Row>
+                  <Form.Row>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type='text'
+                      onChange={this.handleChange}
+                      name='email'
+                      placeholder='email'
+                      value={this.state.email}
+                      
+                    />
+                  </Form.Row>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={this.submit}>Submit</Button>
+                <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+              </Modal.Footer>
+              </Modal>
+              </div>
+              
+            )}
+          
         </div>
       </div>
     )
