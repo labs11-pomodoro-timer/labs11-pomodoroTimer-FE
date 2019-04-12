@@ -13,7 +13,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { timer, getTime } from '../../actions/index.js';
+import { timer, stopTimer } from '../../actions/index.js';
 import Button from 'react-bootstrap/Button';
 import SlackButton from '../button/slackButton.js';
 
@@ -37,12 +37,13 @@ class Profile extends React.Component {
         clearInterval(this.time);
     }
 
-    componentDidUpdate() {
+    // componentDidUpdate() {
         
-        console.log('timers');
-    }
+    //     console.log('timers');
+    // }
 
     stopTime = () => {
+        this.props.stopTimer(localStorage.getItem('id'));
         this.setState({
             countdown: 0
         })
@@ -69,13 +70,13 @@ class Profile extends React.Component {
         return (
             <div className="Profile">
                 <div className="timer-btns">
-                    <Button className="focus-btn" onClick={() => this.props.timer('focus')} variant="secondary" >
+                    <Button className="focus-btn" onClick={() => this.props.timer('focus', localStorage.getItem('id'))} variant="secondary" >
                         Focus 25
                     </Button>
-                    <Button className="focus-btn" onClick={() => this.props.timer('long')} variant="secondary" >
+                    <Button className="focus-btn" onClick={() => this.props.timer('long', localStorage.getItem('id'))} variant="secondary" >
                         Long 15
                     </Button>
-                    <Button className="focus-btn" onClick={() => this.props.timer('short')} variant="secondary" >
+                    <Button className="focus-btn" onClick={() => this.props.timer('short', localStorage.getItem('id'))} variant="secondary" >
                         Short 5
                     </Button>
 
@@ -91,10 +92,10 @@ class Profile extends React.Component {
     }
 }
 
-const mapStateToProps = ({ timerStarted, gettingTime }) => {
+const mapStateToProps = ({ timerStarted, stopTimes }) => {
     return {
         timerStarted,
-        gettingTime
+        stopTimes
     };
 };
 
@@ -103,6 +104,6 @@ export default connect(
     {
         /* action creators go here */
         timer,
-        getTime,
+        stopTimer
     }
 )(Profile);
