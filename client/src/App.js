@@ -30,14 +30,16 @@ class App extends Component {
       firstName: localStorage.getItem('firstName'),
       lastName: localStorage.getItem('lastName'),
       email: localStorage.getItem('email'),
-      view: '',
+      view: localStorage.getItem('view'),
       initial: false,
       modalShow: true,
       validated: false
     }
   }
 
-
+  componentDidUpdate() {
+    this.state.view = localStorage.getItem('view');
+  }
 
   handleClose() {
     this.setState({ modalShow: false });
@@ -70,7 +72,7 @@ class App extends Component {
       firstName: '',
       lastName: '',
       email: '',
-      view: 'done',
+      view: localStorage.setItem('view', 'done'),
       validated: true
     })
   }
