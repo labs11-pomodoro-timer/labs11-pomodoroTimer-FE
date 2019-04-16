@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Auth0Lock } from "auth0-lock"
 import Button from 'react-bootstrap/Button';
-import SlackButton from "../button/slackButton";
+// import SlackButton from "../button/slackButton";
 
 
 
