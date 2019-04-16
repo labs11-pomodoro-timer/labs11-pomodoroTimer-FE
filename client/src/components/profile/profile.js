@@ -78,12 +78,11 @@ class Profile extends React.Component {
     submitTime = (time) => {
         axios
             .put(`https://focustimer-labs11.herokuapp.com/api/timer/startTimer/${localStorage.getItem('id')}/${time}`, {
-               countdown: this.state.customTime 
+               countdown: localStorage.setItem('time', this.state.customTime )
             })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
-        // this.setState({ customTime: null })
-
+        window.location.reload();
     }
 
 
