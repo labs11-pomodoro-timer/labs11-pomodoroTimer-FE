@@ -24,16 +24,16 @@ var lock = new Auth0Lock(
 
 class Login extends Component {
   render() {
-    console.log("PROCESS: ", process.env);
+    // console.log("PROCESS: ", process.env);
     lock.on("authenticated", function(authResult) {
       // Use the token in authResult to getUserInfo() and save it to localStorage
       lock.getUserInfo(authResult.accessToken, function(error, profile) {
         if (error) {
           // Handle error
-          console.log(`Error: ${error}`);
+          // console.log(`Error: ${error}`);
           return;
         } else {
-          console.log(authResult);
+          // console.log(authResult);
           alert("hello, " + profile.name);
 
           localStorage.setItem("accessToken", authResult.accessToken);
