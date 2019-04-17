@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Media from "react-bootstrap/Media";
 import Card from "react-bootstrap/Card";
 
+import { Auth0Lock } from "auth0-lock"
+import Button from 'react-bootstrap/Button';
+
 // Auth0Lock options (testing purposes)
 // var options = {
 //   auth: {

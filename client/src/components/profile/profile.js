@@ -15,14 +15,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { timer, stopTimer } from '../../actions/index.js';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import SlackButton from '../button/slackButton.js';
+import axios from 'axios';
 
 class Profile extends React.Component {
     constructor() {
         super();
     
         this.state = {
-          countdown: localStorage.getItem('time')
+          countdown: localStorage.getItem('time'),
+          customTime: null
         };
     
         this.formatTime = this.formatTime.bind(this);
@@ -42,8 +45,15 @@ class Profile extends React.Component {
     //     console.log('timers');
     // }
 
+    handleChange = e => {
+        this.setState({
+          [e.target.name]: e.target.value
+        });
+      };
+
     stopTime = () => {
         this.props.stopTimer(localStorage.getItem('id'));
+        localStorage.removeItem('time');
         this.setState({
             countdown: 0
         })
@@ -65,6 +75,16 @@ class Profile extends React.Component {
         return `${minutesOutput}:${secondsOutput}`;
     }
 
+    submitTime = (time) => {
+        axios
+            .put(`https://focustimer-labs11.herokuapp.com/api/timer/startTimer/${localStorage.getItem('id')}/${time}`, {
+               countdown: localStorage.setItem('time', this.state.customTime )
+            })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        window.location.reload();
+    }
+
 
     render() {
         return (
@@ -84,7 +104,18 @@ class Profile extends React.Component {
                 <div id="time-left" className="display">
                     {this.formatTime(this.state.countdown)}
                 </div>
-                <Button className="start-btn" variant="secondary" >Start</Button>
+                <Form id="time-left" className="custom-time">
+                    <Form.Control 
+                        type="number"
+                        min="0"
+                        max="86400"
+                        onChange={this.handleChange}
+                        name="customTime"
+                        placeholder="Time in Seconds"
+                        value={this.state.customTime}
+                    />
+                </Form>
+                <Button className="start-btn" variant="secondary" onClick={() => this.submitTime(this.state.customTime)}>Start</Button>
                 <Button className="start-btn" variant="secondary" onClick={this.stopTime}>Stop</Button>
                 <SlackButton />
             </div>
