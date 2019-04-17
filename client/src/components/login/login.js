@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Auth0Lock } from "auth0-lock";
+
 import Button from "react-bootstrap/Button";
 import Media from "react-bootstrap/Media";
 import Card from "react-bootstrap/Card";
-
-import { Auth0Lock } from "auth0-lock"
-import Button from 'react-bootstrap/Button';
+import ListGroup from "react-bootstrap/ListGroup";
 
 // Auth0Lock options (testing purposes)
 // var options = {
@@ -85,14 +84,14 @@ class Login extends Component {
               Basic Functionality & Performance
             </Card.Subtitle>
             <Card.Text>
-              Focus Timer Lite is geared for those users who do not
-              need all the bells and whistles. Users can effortlessly integrate our app into a Slack
-              workspace and sets themselves in "Focus Mode."
+              Focus Timer Lite is geared for those users who do not need all the
+              bells and whistles. Users can effortlessly integrate our app into
+              a Slack workspace and sets themselves in "Focus Mode."
             </Card.Text>
-            <ul>
-              <li>Focus, Short, Long break presets</li>
-              <li>Easy Slack Integration</li>
-            </ul>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Focus, Short, Long break presets</ListGroup.Item>
+              <ListGroup.Item>Easy Slack Integration</ListGroup.Item>
+            </ListGroup>
           </Card.Body>
         </Card>
         <Card className="premium" style={{ width: "18rem " }}>
@@ -102,20 +101,29 @@ class Login extends Component {
               Performance + Customization
             </Card.Subtitle>
             <Card.Text>
-              Focus Timer Premium is geared for those users that want their timer to be unique as they are. Users can effortlessly integrate our app into a Slack
-              workspace and sets themselves in "Focus Mode."
+              Focus Timer Premium is geared for those users that want their
+              timer to be unique as they are. Users can effortlessly integrate
+              our app into a Slack workspace and sets themselves in "Focus
+              Mode."
             </Card.Text>
-            <ul>
-              <p>All the features of Lite Plan PLUS:</p>
-              <li>Customizable timer intervals</li>
-              <li>Customizable themes</li>
-              <li>All future feature releases at no additional charge</li>
-              <li>A BIG thank you & virtual Hi-Five! Go you!</li>
-            </ul>
+            <p>All the features of Lite Plan PLUS:</p>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Customizable timer intervals</ListGroup.Item>
+              <ListGroup.Item>Customizable themes</ListGroup.Item>
+              <ListGroup.Item>
+                All future feature releases at no additional charge
+              </ListGroup.Item>
+              <ListGroup.Item>
+                A BIG thank you & virtual Hi-Five! Go you!
+              </ListGroup.Item>
+            </ListGroup>
           </Card.Body>
         </Card>
         <h3>Are You Ready?</h3>
-        <p>Try out Focus Timer for yourself today and see how more productive life can be.</p>
+        <p>
+          Try out Focus Timer for yourself today and see how more productive
+          life can be.
+        </p>
       </div>
     );
   }
