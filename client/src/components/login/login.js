@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../App.css";
 import { Auth0Lock } from "auth0-lock";
 
 import Button from "react-bootstrap/Button";
@@ -47,8 +48,8 @@ class Login extends Component {
     });
 
     return (
-      <div className="App">
-        <header>
+      <div className="Landing">
+        <header className="top">
           <h1>Focus Timer</h1>
           <Button
             onClick={function() {
@@ -59,71 +60,78 @@ class Login extends Component {
             Login
           </Button>
         </header>
-        <Media>
-          <img
-            width={64}
-            height={64}
-            className="align-self-center product-gif"
-            src=""
-            alt="Product gif demonstrating Focus Timer workflow."
-          />
-          <h3>The Timer You Never Knew You Needed...</h3>
-          <h5>UNTIL NOW</h5>
+        <div className="blurb">
+          <div className="media-image">
+            <img
+              src="https://media.giphy.com/media/39d07hnWZ6cBW/giphy.gif"
+              alt="Spider-Man"
+            />
+          </div>
+          <div className="media-content">
+            <h3 className="media-head">
+              The Timer You Never Knew You Needed...
+            </h3>
+            <p className="media-text">
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+              scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
+              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </p>
+          </div>
+        </div>
+        <div className="comparison">
+          <Card className="free" style={{ width: "18rem " }}>
+            <Card.Body>
+              <Card.Title>Lite Plan</Card.Title>
+              <Card.Subtitle className="subtitle">
+                Basic Functionality & Performance
+              </Card.Subtitle>
+              <Card.Text>
+                Focus Timer Lite is geared for those users who do not need all
+                the bells and whistles. Users can effortlessly integrate our app
+                into a Slack workspace and sets themselves in "Focus Mode."
+              </Card.Text>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  Focus, Short, Long break presets
+                </ListGroup.Item>
+                <ListGroup.Item>Easy Slack Integration</ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+          <Card className="premium" style={{ width: "18rem " }}>
+            <Card.Body>
+              <Card.Title>Premium Plan</Card.Title>
+              <Card.Subtitle className="subtitle">
+                Performance + Customization
+              </Card.Subtitle>
+              <Card.Text>
+                Focus Timer Premium is geared for those users that want their
+                timer to be unique as they are. Users can effortlessly integrate
+                our app into a Slack workspace and sets themselves in "Focus
+                Mode."
+              </Card.Text>
+              <p>All the features of Lite Plan PLUS:</p>
+              <ListGroup variant="flush">
+                <ListGroup.Item>Customizable timer intervals</ListGroup.Item>
+                <ListGroup.Item>Customizable themes</ListGroup.Item>
+                <ListGroup.Item>
+                  All future feature releases at no additional charge
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  A BIG thank you & virtual Hi-Five! Go you!
+                </ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="bottom">
+          <h3>Are You Ready?</h3>
           <p>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-            nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            Try out Focus Timer for yourself today and see how more productive
+            life can be.
           </p>
-          <Media.Body />
-        </Media>
-        <Card className="free" style={{ width: "18rem " }}>
-          <Card.Body>
-            <Card.Title>Lite Plan</Card.Title>
-            <Card.Subtitle className="subtitle">
-              Basic Functionality & Performance
-            </Card.Subtitle>
-            <Card.Text>
-              Focus Timer Lite is geared for those users who do not need all the
-              bells and whistles. Users can effortlessly integrate our app into
-              a Slack workspace and sets themselves in "Focus Mode."
-            </Card.Text>
-            <ListGroup variant="flush">
-              <ListGroup.Item>Focus, Short, Long break presets</ListGroup.Item>
-              <ListGroup.Item>Easy Slack Integration</ListGroup.Item>
-            </ListGroup>
-          </Card.Body>
-        </Card>
-        <Card className="premium" style={{ width: "18rem " }}>
-          <Card.Body>
-            <Card.Title>Premium Plan</Card.Title>
-            <Card.Subtitle className="subtitle">
-              Performance + Customization
-            </Card.Subtitle>
-            <Card.Text>
-              Focus Timer Premium is geared for those users that want their
-              timer to be unique as they are. Users can effortlessly integrate
-              our app into a Slack workspace and sets themselves in "Focus
-              Mode."
-            </Card.Text>
-            <p>All the features of Lite Plan PLUS:</p>
-            <ListGroup variant="flush">
-              <ListGroup.Item>Customizable timer intervals</ListGroup.Item>
-              <ListGroup.Item>Customizable themes</ListGroup.Item>
-              <ListGroup.Item>
-                All future feature releases at no additional charge
-              </ListGroup.Item>
-              <ListGroup.Item>
-                A BIG thank you & virtual Hi-Five! Go you!
-              </ListGroup.Item>
-            </ListGroup>
-          </Card.Body>
-        </Card>
-        <h3>Are You Ready?</h3>
-        <p>
-          Try out Focus Timer for yourself today and see how more productive
-          life can be.
-        </p>
+        </div>
       </div>
     );
   }
