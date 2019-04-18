@@ -58,7 +58,7 @@ class App extends Component {
   submitHandler = () => {
     // http://localhost:8000
     // https://focustimer-labs11.herokuapp.com
-    axios.post('http://localhost:8000/api/users', {
+    axios.post('https://focustimer-labs11.herokuapp.com/api/users', {
       firstname: this.state.firstName,
       lastname: this.state.lastName,
       email: this.state.email
@@ -77,7 +77,7 @@ class App extends Component {
           })
         } else if (res.status === 201) {
           console.log(this.state.email);
-          axios.get(`http://localhost:8000/api/users/${localStorage.getItem('email')}`)
+          axios.get(`https://focustimer-labs11.herokuapp.com/${localStorage.getItem('email')}`)
             .then(res => {
               this.setState({
                 id: localStorage.setItem('id', res.data.id),
