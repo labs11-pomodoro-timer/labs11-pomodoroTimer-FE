@@ -56,16 +56,45 @@ class App extends Component {
   };
 
   submitHandler = () => {
-    // http://localhost:8000/api/users
-
-    axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
+    // http://localhost:8000
+    // https://focustimer-labs11.herokuapp.com
+    axios.post('https://focustimer-labs11.herokuapp.com/api/users', {
       firstname: this.state.firstName,
       lastname: this.state.lastName,
       email: this.state.email
-     })
-      .then(res => 
-        this.setState({ id: localStorage.setItem('id', res.data.id) })
-        // console.log(res.data.id)
+    })
+      .then(res => {
+        if (res.status === 200) {
+          this.setState({
+            id: localStorage.setItem('id', res.data.id),
+            firstName: localStorage.setItem('firstName', res.data.firstname),
+            lastName: localStorage.setItem('lastName', res.data.lastname),
+            email: localStorage.setItem('email', res.data.email),
+            phone: localStorage.setItem('phone', res.data.phone),
+            timerName: localStorage.setItem('timerName', res.data.timerName),
+            timerStart: localStorage.setItem('timerStart', res.data.timerStart),
+            timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
+          })
+        } else if (res.status === 201) {
+          console.log(this.state.email);
+          axios.get(`https://focustimer-labs11.herokuapp.com/${localStorage.getItem('email')}`)
+            .then(res => {
+              this.setState({
+                id: localStorage.setItem('id', res.data.id),
+                firstName: localStorage.setItem('firstName', res.data.firstname),
+                lastName: localStorage.setItem('lastName', res.data.lastname),
+                email: localStorage.setItem('email', res.data.email),
+                phone: localStorage.setItem('phone', res.data.phone),
+                timerName: localStorage.setItem('timerName', res.data.timerName),
+                timerStart: localStorage.setItem('timerStart', res.data.timerStart),
+                timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
+              })
+            })
+            .catch(err => console.log('error', err))
+        }
+      }
+        // this.setState({ id: localStorage.setItem('id', res.data.id) })
+        // console.log(res.status)
       )
       .catch(err => console.log(err));
     this.setState({
