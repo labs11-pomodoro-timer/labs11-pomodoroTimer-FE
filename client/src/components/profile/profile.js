@@ -14,7 +14,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { timer, stopTimer } from '../../actions/index.js';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import SlackButton from '../button/slackButton.js';
 import axios from 'axios';
@@ -88,17 +88,17 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div className="Profile">
+            <div className="profile">
                 <div className="timer-btns">
-                    <Button className="focus-btn" onClick={() => this.props.timer('focus', localStorage.getItem('id'))} variant="secondary" >
+                    <button className="focus-btn" onClick={() => this.props.timer('focus', localStorage.getItem('id'))} >
                         Focus 25
-                    </Button>
-                    <Button className="focus-btn" onClick={() => this.props.timer('long', localStorage.getItem('id'))} variant="secondary" >
+                    </button>
+                    <button className="focus-btn" onClick={() => this.props.timer('long', localStorage.getItem('id'))} >
                         Long 15
-                    </Button>
-                    <Button className="focus-btn" onClick={() => this.props.timer('short', localStorage.getItem('id'))} variant="secondary" >
+                    </button>
+                    <button className="focus-btn" onClick={() => this.props.timer('short', localStorage.getItem('id'))} >
                         Short 5
-                    </Button>
+                    </button>
 
                 </div>
                 <div id="time-left" className="display">
@@ -115,8 +115,8 @@ class Profile extends React.Component {
                         value={this.state.customTime}
                     />
                 </Form>
-                <Button className="start-btn" variant="secondary" onClick={() => this.submitTime(this.state.customTime)}>Start</Button>
-                <Button className="start-btn" variant="secondary" onClick={this.stopTime}>Stop</Button>
+                <button className="start-btn" onClick={() => this.submitTime(this.state.customTime)}>Start</button>
+                <button className="start-btn stop-btn" onClick={this.stopTime}>Stop</button>
                 <SlackButton />
             </div>
         )

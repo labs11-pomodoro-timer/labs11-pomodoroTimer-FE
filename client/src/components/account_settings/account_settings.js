@@ -1,7 +1,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
@@ -76,7 +76,7 @@ class Billing extends React.Component {
                     
               />
             </Form.Row>
-            <Button className="form-btn" onClick={this.submitEmailHandler}>Submit</Button>
+            <button className="form-btn" onClick={this.submitEmailHandler}>Submit</button>
           </Form>
         </div>
         {this.state.complete ? (
