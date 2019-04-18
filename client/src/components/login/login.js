@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "../../App.css";
+import "./login.css";
 import { Auth0Lock } from "auth0-lock";
+import Logo from "../../assets/FINAL Focus Timer-01(trim).png";
 
 import Button from "react-bootstrap/Button";
 import Media from "react-bootstrap/Media";
@@ -49,17 +50,21 @@ class Login extends Component {
 
     return (
       <div className="Landing">
-        <header className="top">
-          <h1>Focus Timer</h1>
-          <Button
-            onClick={function() {
-              lock.show();
-            }}
-            variant="primary"
-          >
-            Login
-          </Button>
-        </header>
+        <div className="header-div">
+          <header className="top">
+            <div className="logo">
+              <img src={Logo} />
+            </div>
+            <Button
+              onClick={function() {
+                lock.show();
+              }}
+              variant="primary"
+            >
+              Login
+            </Button>
+          </header>
+        </div>
         <div className="blurb">
           <div className="media-image">
             <img
