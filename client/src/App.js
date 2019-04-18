@@ -36,10 +36,32 @@ class App extends Component {
       validated: false
     }
   }
-
-  componentDidUpdate() {
-    this.state.view = localStorage.getItem('view');
+  componentDidMount() {
+    // http://localhost:8000
+    // https://focustimer-labs11.heroku.com
+    axios.get(`http://localhost:8000/api/users/${this.state.email}`)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          id: localStorage.setItem('id', res.data.id),
+          firstName: localStorage.setItem('firstName', res.data.firstname),
+          lastName: localStorage.setItem('lastName', res.data.lastname),
+          email: localStorage.setItem('email', res.data.email),
+          phone: localStorage.setItem('phone', res.data.phone),
+          timerName: localStorage.setItem('timerName', res.data.timerName),
+          timerStart: localStorage.setItem('timerStart', res.data.timerStart),
+          timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd),
+          modalShow: false,
+          validated: true,
+          view: localStorage.setItem('view', 'done')
+        })
+      })
+      .catch(err => console.log('err', err));
   }
+
+  // componentDidUpdate() {
+  //   this.state.view = localStorage.getItem('view');
+  // }
 
   handleClose() {
     this.setState({ modalShow: false });
