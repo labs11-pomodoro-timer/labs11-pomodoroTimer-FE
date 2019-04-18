@@ -4,7 +4,6 @@ import { Auth0Lock } from "auth0-lock";
 import Logo from "../../assets/FINAL Focus Timer-01(trim).png";
 
 import Button from "react-bootstrap/Button";
-import Media from "react-bootstrap/Media";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
@@ -76,20 +75,22 @@ class Login extends Component {
             <h3 className="media-head">
               The Timer You Never Knew You Needed...
             </h3>
+            <h4>UNTIL NOW</h4>
+            <br/>
             <p className="media-text">
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-              scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
-              in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-              nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              Productivity loss is a real drag. Especially when you must dedicate your most precious resource, time. There are so many
+              outside distractions that can derail you. Do not let Slack become
+              one of them. Introducing Focus Timer, the application that boosts
+              productivity by creating a distraction-free Slack Workspace.
             </p>
           </div>
         </div>
         <div className="comparison">
-          <Card className="free" style={{ width: "18rem " }}>
+          <Card className="free" style={{ width: "20rem " }}>
             <Card.Body>
-              <Card.Title>Lite Plan</Card.Title>
+              <Card.Title>Focus Lite</Card.Title>
               <Card.Subtitle className="subtitle">
-                Basic Functionality & Performance
+                Functionality & Performance
               </Card.Subtitle>
               <Card.Text>
                 Focus Timer Lite is geared for those users who do not need all
@@ -98,15 +99,15 @@ class Login extends Component {
               </Card.Text>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  Focus, Short, Long break presets
+                  Focus, Long, Short break presets
                 </ListGroup.Item>
                 <ListGroup.Item>Easy Slack Integration</ListGroup.Item>
               </ListGroup>
             </Card.Body>
           </Card>
-          <Card className="premium" style={{ width: "18rem " }}>
+          <Card className="premium" style={{ width: "20rem " }}>
             <Card.Body>
-              <Card.Title>Premium Plan</Card.Title>
+              <Card.Title>Focus Premium</Card.Title>
               <Card.Subtitle className="subtitle">
                 Performance + Customization
               </Card.Subtitle>
@@ -116,15 +117,15 @@ class Login extends Component {
                 our app into a Slack workspace and sets themselves in "Focus
                 Mode."
               </Card.Text>
-              <p>All the features of Lite Plan PLUS:</p>
+              <p>The features of Focus Lite PLUS:</p>
               <ListGroup variant="flush">
-                <ListGroup.Item>Customizable timer intervals</ListGroup.Item>
                 <ListGroup.Item>Customizable themes</ListGroup.Item>
+                <ListGroup.Item>Customizable timer intervals</ListGroup.Item>
                 <ListGroup.Item>
                   All future feature releases at no additional charge
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  A BIG thank you & virtual Hi-Five! Go you!
+                  A BIG thank you & virtual Hi-Five! GO YOU!
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>

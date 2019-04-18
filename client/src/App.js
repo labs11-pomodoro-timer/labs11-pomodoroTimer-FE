@@ -59,8 +59,8 @@ class App extends Component {
     // http://localhost:8000/api/users
 
     axios.post('https://focustimer-labs11.herokuapp.com/api/users', { 
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      firstname: this.state.firstName,
+      lastname: this.state.lastName,
       email: this.state.email
      })
       .then(res => 
@@ -89,16 +89,6 @@ class App extends Component {
   }
 
   render() {
-    // const createInput = text => (
-    //   <input
-    //     type='text'
-    //     onChange={this.handleChange}
-    //     name={text}
-    //     placeholder={text}
-    //     value={this.state[text]}
-    //   />
-    // );
-
     const { validated } = this.state;
     
     return (
