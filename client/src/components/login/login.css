@@ -11,8 +11,8 @@
 }
 
 .header-div {
-    width: 80%;
-    margin-top: 10px;
+  width: 80%;
+  margin-top: 10px;
 }
 
 .top {
@@ -49,7 +49,12 @@
 
 .media-image {
   align-self: center;
-  max-width: 18%;
+  max-width: 20%;
+}
+@media (max-width: 650px) {
+  .media-image {
+    display: none;
+  }
 }
 
 /* .media-text {
@@ -63,15 +68,65 @@
   margin-top: 20px;
   width: 50%;
 }
+@media (max-width: 650px) {
+  .comparison {
+    flex-direction: column;
+    justify-content: space-around;
+    /* margin-top: 20px; */
+  }
+}
+
+.card-body {
+  background-color: #dde0bd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(39, 64, 41, 0.5),
+    0 6px 20px 0 rgba(39, 64, 41, 0.24);
+  /* -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; */
+}
+
+/* .card-body:hover,
+.card-body:focus,
+.card-body:active {
+  -webkit-transform: translateY(-8px);
+  transform: translateY(-8px);
+} */
+@media (max-width: 650px) {
+  .card-body {
+    margin: 0 auto;
+  }
+}
+
+.card-title {
+  font-family: "Cinzel", serif;
+  color: black;
+}
+
+.list-group-item {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
 
 .free {
   align-self: flex-start;
   /* margin-left: 25%; */
 }
 
-/* .premium {
-  margin-right: 25%;
-} */
+.premium {
+ /* margin-top: 20px; */
+}
+@media (max-width: 650px) {
+  .premium {
+    margin-top: 20px;
+    margin-left: 3%;
+  }
+}
 
 .bottom {
   display: flex;
