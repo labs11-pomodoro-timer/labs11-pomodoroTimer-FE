@@ -14,7 +14,16 @@ import ListGroup from "react-bootstrap/ListGroup";
 //   }
 // };
 
-var options = {};
+var options = {
+  theme: {
+    logo: Logo,
+    primaryColor: '#E03616'
+  },
+  languageDictionary: {
+    emailInputPlaceholder: "labs11@lambda.com",
+    title: "Focus Timer"
+  }
+};
 
 // The lock function contains 2 arguments, the Client ID and the domain
 var lock = new Auth0Lock(
