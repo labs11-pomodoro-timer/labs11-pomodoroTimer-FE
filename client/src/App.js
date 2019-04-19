@@ -36,10 +36,32 @@ class App extends Component {
       validated: false
     }
   }
-
-  componentDidUpdate() {
-    this.state.view = localStorage.getItem('view');
+  componentDidMount() {
+    // http://localhost:8000
+    // https://focustimer-labs11.heroku.com
+    axios.get(`https://focustimer-labs11.heroku.com/api/users/${this.state.email}`)
+      .then(res => {
+        // console.log(res);
+        this.setState({
+          id: localStorage.setItem('id', res.data.id),
+          firstName: localStorage.setItem('firstName', res.data.firstname),
+          lastName: localStorage.setItem('lastName', res.data.lastname),
+          email: localStorage.setItem('email', res.data.email),
+          phone: localStorage.setItem('phone', res.data.phone),
+          timerName: localStorage.setItem('timerName', res.data.timerName),
+          timerStart: localStorage.setItem('timerStart', res.data.timerStart),
+          timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd),
+          modalShow: false,
+          validated: true,
+          view: localStorage.setItem('view', 'done')
+        })
+      })
+      .catch(err => console.log('MOUNT err', err));
   }
+
+  // componentDidUpdate() {
+  //   this.state.view = localStorage.getItem('view');
+  // }
 
   handleClose() {
     this.setState({ modalShow: false });
@@ -58,7 +80,7 @@ class App extends Component {
   submitHandler = () => {
     // http://localhost:8000
     // https://focustimer-labs11.herokuapp.com
-    axios.post('https://focustimer-labs11.herokuapp.com/api/users', {
+    axios.post('https://focustimer-labs11.heroku.com/api/users', {
       firstname: this.state.firstName,
       lastname: this.state.lastName,
       email: this.state.email
@@ -76,8 +98,8 @@ class App extends Component {
             timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
           })
         } else if (res.status === 201) {
-          console.log(this.state.email);
-          axios.get(`https://focustimer-labs11.herokuapp.com/${localStorage.getItem('email')}`)
+          console.log(localStorage.getItem('email'));
+          axios.get(`https://focustimer-labs11.heroku.com/api/users/${localStorage.getItem('email')}`)
             .then(res => {
               this.setState({
                 id: localStorage.setItem('id', res.data.id),
@@ -90,8 +112,9 @@ class App extends Component {
                 timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
               })
             })
-            .catch(err => console.log('error', err))
+            .catch(res => console.log('catch error', res))
         }
+        this.setState({ modalShow: false });
       }
         // this.setState({ id: localStorage.setItem('id', res.data.id) })
         // console.log(res.status)
@@ -144,67 +167,63 @@ class App extends Component {
             />} />
           </div>
         </Router>
-        <div className="Modal">
-            {this.state.view === 'done' ? (
-              <div></div>
-            ) : (
-              <div>
-                <Button onClick={this.handleShow} className="modal-btn">Click Me to Register</Button>
-                <Modal show={this.state.modalShow} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                <Modal.Title>Please Confirm Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Form
-                    noValidate
-                    validated={validated}
-                    onSubmit={this.submitHandler}
-                  >
-                  <Form.Row>
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                      type='text'
-                      onChange={this.handleChange}
-                      name='firstName'
-                      placeholder='firstName'
-                      value={this.state.firstName}
-                      
-                    />
-                  </Form.Row>
-                  <Form.Row>
-                  <Form.Label>Last Name</Form.Label>
+        {!this.state.modalShow ? null : (
+          <div className="Modal">
+            <div>
+              <Button onClick={this.handleShow} className="modal-btn">Click Me to Register</Button>
+              <Modal show={this.state.modalShow} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+              <Modal.Title>Please Confirm Details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form
+                  noValidate
+                  validated={validated}
+                  onSubmit={this.submitHandler}
+                >
+                <Form.Row>
+                  <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type='text'
                     onChange={this.handleChange}
-                    name='lastName'
-                    placeholder='lastName'
-                    value={this.state.lastName}
+                    name='firstName'
+                    placeholder='firstName'
+                    value={this.state.firstName}
                     
                   />
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type='text'
-                      onChange={this.handleChange}
-                      name='email'
-                      placeholder='email'
-                      value={this.state.email}
-                      
-                    />
-                  </Form.Row>
-                </Form>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={this.submit}>Submit</Button>
-                <Button variant="secondary" onClick={this.handleClose}>Close</Button>
-              </Modal.Footer>
-              </Modal>
-              </div>
-              
-            )}
-          
-        </div>
+                </Form.Row>
+                <Form.Row>
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type='text'
+                  onChange={this.handleChange}
+                  name='lastName'
+                  placeholder='lastName'
+                  value={this.state.lastName}
+                  
+                />
+                </Form.Row>
+                <Form.Row>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type='text'
+                    onChange={this.handleChange}
+                    name='email'
+                    placeholder='email'
+                    value={this.state.email}
+                    
+                  />
+                </Form.Row>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={this.submit}>Submit</Button>
+              <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+            </Modal.Footer>
+            </Modal>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
