@@ -13,8 +13,16 @@ import axios from 'axios';
 class Billing extends React.Component {
   constructor() {
     super();
-    this.state = { complete: false, changeEmail: '' };
+    this.state = { complete: localStorage.getItem('complete'), changeEmail: '' };
     this.onToken = this.onToken.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.complete === localStorage.getItem('complete', true)) {
+      this.setState({
+        complete: localStorage.getItem('complete')
+      })
+    }
   }
 
   // Local testing URL
@@ -38,7 +46,12 @@ class Billing extends React.Component {
     console.log(response)
     if (response.ok)
       this.setState({
-        complete: true
+        complete: localStorage.setItem('complete', true)
+      });
+
+      if (response.ok)
+      this.setState({
+        complete: localStorage.getItem('complete')
       });
     console.log("Purchase Successful");
   }
@@ -84,7 +97,7 @@ class Billing extends React.Component {
             <span className="badge badge-light">Status:</span>
             <span>
               {this.state.complete ? (
-                <h3 className="badge badge-info">Premium</h3>
+                <h3 className="badge badge-dark">Premium</h3>
               ) : (
                   <h3 className="badge badge-secondary">Standard</h3>
                 )}
@@ -96,7 +109,7 @@ class Billing extends React.Component {
                 <span className="badge badge-light">Status:</span>
                 <span>
                   {this.state.complete ? (
-                    <h3 className="badge badge-info">Premium</h3>
+                    <h3 className="badge badge-dark">Premium</h3>
                   ) : (
                       <h3 className="badge badge-secondary">Standard</h3>
                     )}
