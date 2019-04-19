@@ -56,7 +56,7 @@ class App extends Component {
           view: localStorage.setItem('view', 'done')
         })
       })
-      .catch(err => console.log('err', err));
+      .catch(err => console.log('MOUNT err', err));
   }
 
   // componentDidUpdate() {
@@ -98,8 +98,8 @@ class App extends Component {
             timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
           })
         } else if (res.status === 201) {
-          console.log(this.state.email);
-          axios.get(`http://localhost:8000/${localStorage.getItem('email')}`)
+          console.log(localStorage.getItem('email'));
+          axios.get(`http://localhost:8000/api/users/${localStorage.getItem('email')}`)
             .then(res => {
               this.setState({
                 id: localStorage.setItem('id', res.data.id),
@@ -112,8 +112,9 @@ class App extends Component {
                 timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
               })
             })
-            .catch(err => console.log('error', err))
+            .catch(res => console.log('catch error', res))
         }
+        this.setState({ modalShow: false });
       }
         // this.setState({ id: localStorage.setItem('id', res.data.id) })
         // console.log(res.status)
@@ -166,67 +167,63 @@ class App extends Component {
             />} />
           </div>
         </Router>
-        <div className="Modal">
-            {this.state.view === 'done' ? (
-              <div></div>
-            ) : (
-              <div>
-                <Button onClick={this.handleShow} className="modal-btn">Click Me to Register</Button>
-                <Modal show={this.state.modalShow} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                <Modal.Title>Please Confirm Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Form
-                    noValidate
-                    validated={validated}
-                    onSubmit={this.submitHandler}
-                  >
-                  <Form.Row>
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                      type='text'
-                      onChange={this.handleChange}
-                      name='firstName'
-                      placeholder='firstName'
-                      value={this.state.firstName}
-                      
-                    />
-                  </Form.Row>
-                  <Form.Row>
-                  <Form.Label>Last Name</Form.Label>
+        {!this.state.modalShow ? null : (
+          <div className="Modal">
+            <div>
+              <Button onClick={this.handleShow} className="modal-btn">Click Me to Register</Button>
+              <Modal show={this.state.modalShow} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+              <Modal.Title>Please Confirm Details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form
+                  noValidate
+                  validated={validated}
+                  onSubmit={this.submitHandler}
+                >
+                <Form.Row>
+                  <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type='text'
                     onChange={this.handleChange}
-                    name='lastName'
-                    placeholder='lastName'
-                    value={this.state.lastName}
+                    name='firstName'
+                    placeholder='firstName'
+                    value={this.state.firstName}
                     
                   />
-                  </Form.Row>
-                  <Form.Row>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type='text'
-                      onChange={this.handleChange}
-                      name='email'
-                      placeholder='email'
-                      value={this.state.email}
-                      
-                    />
-                  </Form.Row>
-                </Form>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={this.submit}>Submit</Button>
-                <Button variant="secondary" onClick={this.handleClose}>Close</Button>
-              </Modal.Footer>
-              </Modal>
-              </div>
-              
-            )}
-          
-        </div>
+                </Form.Row>
+                <Form.Row>
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type='text'
+                  onChange={this.handleChange}
+                  name='lastName'
+                  placeholder='lastName'
+                  value={this.state.lastName}
+                  
+                />
+                </Form.Row>
+                <Form.Row>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type='text'
+                    onChange={this.handleChange}
+                    name='email'
+                    placeholder='email'
+                    value={this.state.email}
+                    
+                  />
+                </Form.Row>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={this.submit}>Submit</Button>
+              <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+            </Modal.Footer>
+            </Modal>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
