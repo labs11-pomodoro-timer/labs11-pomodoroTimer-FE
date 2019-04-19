@@ -100,6 +100,7 @@
   border-radius: 5px;
   background: #272D2D;
   color: #DDE0BD;
+  border-color: #272D2D;
 }
 
 .start-btn {
@@ -113,11 +114,13 @@
   border-radius: 5px;
   background: #272D2D;
   color: #DDE0BD;
+  border-color: #272D2D;
 }
 
 .stop-btn {
   background: #DDE0BD;
   color: #E03616;
+  border-color: #DDE0BD;
 }
 
 .modal-btn {

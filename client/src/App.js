@@ -1,6 +1,9 @@
 import React, { Component, history } from 'react';
 import './App.css';
-// import { Auth0Lock } from "auth0-lock";
+import { ThemeProvider } from "styled-components";
+// import { Button } from "./components/themes/button.style";
+// import { Layout } from "./components/themes/background.style"
+// import { withCustomTheme } from "./components/themes/with-custom-theme";
 import Billing from './components/account_settings/account_settings.js';
 
 import Authenticate from './components/authentication/authentication.js'
@@ -17,6 +20,23 @@ import {  getEmail } from './actions/index.js';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import axios from 'axios';
 
+// const theme = {
+//   colors: {
+//       lightest: "#272D2D",
+//       primary: "#DDE0BD",
+//       secondary: "#272D2D"
+//   }
+// };
+
+//  const premiumButton1 = {
+//   colors: {
+//       lightest: "#000000",
+//       primary: "azure",
+//       secondary: "#000000"
+//   }
+// };
+
+// const MyPremiumButton1 = withCustomTheme(Button, premiumButton1);
 
 class App extends Component {
   constructor() {
