@@ -38,8 +38,8 @@ class App extends Component {
   }
   componentDidMount() {
     // http://localhost:8000
-    // https://focustimer-labs11.heroku.com
-    axios.get(`https://focustimer-labs11.heroku.com/api/users/${this.state.email}`)
+    // https://focustimer-labs11.herokuapp.com
+    axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${this.state.email}`)
       .then(res => {
         // console.log(res);
         this.setState({
@@ -80,7 +80,7 @@ class App extends Component {
   submitHandler = () => {
     // http://localhost:8000
     // https://focustimer-labs11.herokuapp.com
-    axios.post('https://focustimer-labs11.heroku.com/api/users', {
+    axios.post('https://focustimer-labs11.herokuapp.com/api/users', {
       firstname: this.state.firstName,
       lastname: this.state.lastName,
       email: this.state.email
@@ -98,8 +98,8 @@ class App extends Component {
             timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd)
           })
         } else if (res.status === 201) {
-          console.log(localStorage.getItem('email'));
-          axios.get(`https://focustimer-labs11.heroku.com/api/users/${localStorage.getItem('email')}`)
+          // console.log(localStorage.getItem('email'));
+          axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
             .then(res => {
               this.setState({
                 id: localStorage.setItem('id', res.data.id),
