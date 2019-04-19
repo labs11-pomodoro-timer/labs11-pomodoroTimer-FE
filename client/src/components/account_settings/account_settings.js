@@ -93,16 +93,27 @@ class Billing extends React.Component {
           </Form>
         </div>
         {this.state.complete ? (
-          <h5>
-            <span className="badge badge-light">Status:</span>
-            <span>
-              {this.state.complete ? (
-                <h3 className="badge badge-dark">Premium</h3>
-              ) : (
-                  <h3 className="badge badge-secondary">Standard</h3>
-                )}
-            </span>
-          </h5>
+          <div>
+            <h5>
+              <span className="badge badge-light">Status:</span>
+              <span>
+                {this.state.complete ? (
+                  <h3 className="badge badge-dark">Premium</h3>
+                ) : (
+                    <h3 className="badge badge-secondary">Standard</h3>
+                  )}
+              </span>
+            </h5>
+            {/* <Form>
+              <Form.Group controlId="formGridState">
+                <Form.Label>Theme</Form.Label>
+                <Form.Control as="select">
+                  <option>Default</option>
+                  <option>Premium Theme 1</option>
+                </Form.Control>
+              </Form.Group>
+            </Form> */}
+          </div>
         ) : (
             <div>
               <h5>
