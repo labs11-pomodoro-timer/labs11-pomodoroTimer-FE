@@ -18,11 +18,16 @@ class Billing extends React.Component {
   }
 
   componentDidMount() {
-    if (this.state.complete === localStorage.getItem('complete', true)) {
-      this.setState({
-        complete: localStorage.getItem('complete')
+    axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
+      .then(res => {
+        this.setState({
+          premium: res.data.premiumUser
+        })
+        if (res.data.premiumUser === true) {
+          this.setState({ complete: localStorage.setItem('complete', true) })
+        }
       })
-    }
+      .catch(err => console.log(err));
   }
 
   // Local testing URL
@@ -45,14 +50,20 @@ class Billing extends React.Component {
     );
     console.log(response)
     if (response.ok)
-      this.setState({
-        complete: localStorage.setItem('complete', true)
-      });
+      axios.put(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('id')}`, {
+        premiumUser: true
+      })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
 
-      if (response.ok)
-      this.setState({
-        complete: localStorage.getItem('complete')
-      });
+    if (response.ok)
+      axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
+      .then(res => {
+        this.setState({
+          premium: res.data.premiumUser
+        })
+      })
+      .catch(err => console.log(err));
     console.log("Purchase Successful");
   }
 
@@ -92,12 +103,12 @@ class Billing extends React.Component {
             <button className="form-btn" onClick={this.submitEmailHandler}>Submit</button>
           </Form>
         </div>
-        {this.state.complete ? (
+        {this.state.premium ? (
           <div>
             <h5>
               <span className="badge badge-light">Status:</span>
               <span>
-                {this.state.complete ? (
+                {this.state.premium ? (
                   <h3 className="badge badge-dark">Premium</h3>
                 ) : (
                     <h3 className="badge badge-secondary">Standard</h3>
@@ -119,7 +130,7 @@ class Billing extends React.Component {
               <h5>
                 <span className="badge badge-light">Status:</span>
                 <span>
-                  {this.state.complete ? (
+                  {this.state.premium ? (
                     <h3 className="badge badge-dark">Premium</h3>
                   ) : (
                       <h3 className="badge badge-secondary">Standard</h3>
