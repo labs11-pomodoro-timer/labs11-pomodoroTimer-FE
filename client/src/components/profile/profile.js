@@ -25,7 +25,8 @@ class Profile extends React.Component {
 
     this.state = {
       countdown: localStorage.getItem("time"),
-      customTime: null
+      customTime: null,
+      slackInt: false
     };
 
     this.formatTime = this.formatTime.bind(this);
@@ -34,6 +35,14 @@ class Profile extends React.Component {
   componentDidMount() {
     // this.props.getTime(); // pass id into getTime
     this.time = setInterval(this.timers, 1000);
+    axios.get(`https://focustimer-labs11.herokuapp.com/api/slackUsers/${this.state.email}`)
+        .then(res => {
+            if(res.status === 200) {
+                this.setState({
+                    slackInt: true
+                })
+            }
+        })
   }
 
   componentWillUnmount() {
@@ -158,7 +167,14 @@ class Profile extends React.Component {
             </button>
           </div>
         )}
-        <SlackButton />
+        {this.state.slackInt === true ? (
+            <div></div>
+        ) : (
+            <div className="slack-btn">
+                <p>Use slack button to add slack integration</p>
+                <SlackButton />
+            </div>
+        )}
       </div>
     );
   }
