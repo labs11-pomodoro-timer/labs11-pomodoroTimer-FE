@@ -18,6 +18,12 @@ class Billing extends React.Component {
   }
 
   componentDidMount() {
+    if (this.state.premium === true) {
+      this.setState({ premium: localStorage.setItem('premium', true) })
+    }
+    if (this.state.premium === localStorage.setItem('premium', true)) {
+      this.setState({ premium: localStorage.getItem('premium') })
+    }
     axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
       .then(res => {
         this.setState({
@@ -88,6 +94,7 @@ class Billing extends React.Component {
     return (
       <div>
         <div className="change-email">
+        <p>Not you? {localStorage.getItem('firstName')}, {localStorage.getItem('email')}</p>
         <Form>
             <Form.Row>
               <Form.Label>Change Email</Form.Label>
