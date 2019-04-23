@@ -92,18 +92,19 @@ class Profile extends React.Component {
   };
 
   submitTime = time => {
-    axios
-      .put(
-        `https://focustimer-labs11.herokuapp.com/api/timer/startTimer/${localStorage.getItem(
-          "id"
-        )}/${time}`,
-        {
-          countdown: localStorage.setItem("time", this.state.customTime)
-        }
-      )
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-    window.location.reload();
+      if (this.state.customTime === null) {
+          this.setState({ countdown: 0 })
+      } else {
+        axios
+            .put(`https://focustimer-labs11.herokuapp.com/api/timer/startTimer/${localStorage.getItem("id")}/${time}`,
+            {
+                countdown: localStorage.setItem("time", this.state.customTime)
+            }
+        )
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        window.location.reload();
+      }
   };
 
   render() {
