@@ -169,7 +169,7 @@ class App extends Component {
           <div className="App">
             <div className="nav-bar">
               <NavLink exact to='/' className="links" >
-                Profile
+                Timer
             </NavLink>
 
               <NavLink exact to='/billing' className="links" >

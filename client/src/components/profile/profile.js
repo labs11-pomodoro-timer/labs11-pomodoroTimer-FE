@@ -34,6 +34,20 @@ class Profile extends React.Component {
   componentDidMount() {
     // this.props.getTime(); // pass id into getTime
     this.time = setInterval(this.timers, 1000);
+    if (this.state.slackInt === true) {
+        this.setState({ slackInt: localStorage.setItem('slackint', true) })
+    }
+    if (this.state.slackInt === localStorage.setItem('slackint', true)) {
+        this.setState({ slackInt: localStorage.getItem('slackint') })
+    }
+    axios.get(`https://focustimer-labs11.herokuapp.com/api/slackUsers/${localStorage.getItem('email')}`)
+        .then(res => {
+            if(res.status === 200) {
+                this.setState({
+                    slackInt: true
+                })
+            }
+        })
   }
 
   componentWillUnmount() {
@@ -158,7 +172,14 @@ class Profile extends React.Component {
             </button>
           </div>
         )}
-        <SlackButton />
+        {this.state.slackInt ? (
+            <div></div>
+        ) : (
+            <div className="slack-btn">
+                <p>Use slack button to add slack integration</p>
+                <SlackButton />
+            </div>
+        )}
       </div>
     );
   }
