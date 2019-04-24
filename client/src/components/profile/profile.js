@@ -42,7 +42,12 @@ class Profile extends React.Component {
     }
     axios.get(`https://focustimer-labs11.herokuapp.com/api/slackUsers/${localStorage.getItem('email')}`)
         .then(res => {
-            if(res.status === 200) {
+            // console.log(res.data)
+            if(!res.data) {
+                this.setState({
+                    slackInt: false
+                })
+            } else if (res.data) {
                 this.setState({
                     slackInt: true
                 })
