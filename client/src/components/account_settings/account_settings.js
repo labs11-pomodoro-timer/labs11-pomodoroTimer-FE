@@ -1,6 +1,8 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
+import './account_settings.css';
+
 // import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
@@ -157,6 +159,7 @@ class Billing extends React.Component {
                       <h3 className="badge badge-secondary">Standard</h3>
                     )}
                 </span>
+                <span className="logoutBtn" onClick={this.props.logout}>Logout</span>
               </h5>
               <div className="billing-container">
                 <div className="billingcontent-container">

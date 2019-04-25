@@ -194,14 +194,15 @@ class App extends Component {
                 Account Settings
             </NavLink>
 
-              <NavLink to='/' className="links" onClick={this.logout} >
+              {/* <NavLink to='/' className="links" onClick={this.logout} >
                 Logout
-            </NavLink>
+            </NavLink> */}
             </div>
             <Route exact path='/' component={Profile} />
             <Route exact path='/billing' render={props => <Billing 
               {...props}
               id={this.state.id}
+              logout={this.logout}
             />} />
           </div>
         </Router>
