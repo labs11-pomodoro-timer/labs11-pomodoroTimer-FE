@@ -52,7 +52,7 @@ class App extends Component {
       email: localStorage.getItem('email'),
       view: localStorage.getItem('view'),
       initial: false,
-      modalShow: true,
+      modalShow: false,
       validated: false
     }
   }
@@ -83,7 +83,12 @@ class App extends Component {
           })
         }
       })
-      .catch(err => console.log('MOUNT err', err));
+      .catch(err => {
+        console.log('MOUNT err', err)
+        if (err) {
+          this.setState({ modalShow: true })
+        }
+      });
 
     if (localStorage.getItem('premium') === true) {
       this.setState({
