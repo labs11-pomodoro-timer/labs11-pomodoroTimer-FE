@@ -134,9 +134,15 @@ class Billing extends React.Component {
               <span className="badge badge-light">Status:</span>
               <span>
                 {this.state.premium ? (
-                  <h3 className="badge badge-dark">Premium</h3>
+                  <Router>
+                    <h3 className="badge badge-dark">Premium</h3>
+                    <span className="badge badge-dark links" onClick={this.props.logout}><NavLink exact to='/'>Logout</NavLink></span>
+                  </Router>
                 ) : (
+                  <Router>
                     <h3 className="badge badge-secondary">Standard</h3>
+                    <span className="badge badge-dark links" onClick={this.props.logout}><NavLink exact to='/'>Logout</NavLink></span>
+                  </Router>
                   )}
               </span>
             </h5>
@@ -159,7 +165,7 @@ class Billing extends React.Component {
                     <div>
                       <Router>
                         <h3 className="badge badge-dark">Premium</h3>
-                        <span className="badge badge-secondary links" onClick={this.props.logout}><NavLink exact to='/'>Logout</NavLink></span>
+                        <span className="badge badge-dark links" onClick={this.props.logout}><NavLink exact to='/'>Logout</NavLink></span>
                       </Router>
                     </div>
                   ) : (
