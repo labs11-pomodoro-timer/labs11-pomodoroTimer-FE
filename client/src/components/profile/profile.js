@@ -53,6 +53,7 @@ class Profile extends React.Component {
                 })
             }
         })
+        .catch(err => console.log(err));
   }
 
   componentWillUnmount() {
@@ -115,6 +116,14 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile">
+        {this.state.slackInt ? (
+            <div></div>
+        ) : (
+            <div className="slack-btn">
+                <p>Use slack button to add slack integration</p>
+                <SlackButton />
+            </div>
+        )}
         <div className="timer-btns">
           <button
             className="focus-btn"
@@ -167,24 +176,10 @@ class Profile extends React.Component {
           </div>
         ) : (
           <div>
-            <button
-              className="start-btn"
-              onClick={() => this.submitTime(this.state.customTime)}
-            >
-              Start
-            </button>
             <button className="start-btn stop-btn" onClick={this.stopTime}>
               Stop
             </button>
           </div>
-        )}
-        {this.state.slackInt ? (
-            <div></div>
-        ) : (
-            <div className="slack-btn">
-                <p>Use slack button to add slack integration</p>
-                <SlackButton />
-            </div>
         )}
       </div>
     );

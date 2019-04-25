@@ -44,7 +44,6 @@ class Login extends Component {
           return;
         } else {
           // console.log(authResult);
-          alert("hello, " + profile.name);
 
           localStorage.setItem("accessToken", authResult.accessToken);
           localStorage.setItem("profile", JSON.stringify(profile));

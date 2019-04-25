@@ -23,7 +23,7 @@ class Billing extends React.Component {
         complete: localStorage.setItem('complete', true),
         premium: localStorage.getItem('premium')
       })
-    }
+    } 
     axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
       .then(res => {
         this.setState({
