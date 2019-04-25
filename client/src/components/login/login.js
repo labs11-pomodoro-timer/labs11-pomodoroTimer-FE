@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./login.css";
 import { Auth0Lock } from "auth0-lock";
 import Logo from "../../assets/FINAL Focus Timer-01(trim).png";
-import mediaImage from "../../assets/rsz_1focus-timerTrim.png";
+import mediaImage from "../../assets/phoneMockup.png";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
