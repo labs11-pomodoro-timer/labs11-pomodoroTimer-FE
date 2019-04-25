@@ -1,6 +1,6 @@
 # Focus Timer App
 
-The Focus Timer app is a pomodoro timer complete with slack integration
+The Focus Timer app is a pomodoro timer complete with slack integration. Deployed here: https://focustimer.now.sh
 
 ## Getting Started
 
