@@ -1,7 +1,9 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-import './account_settings.css';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+
+import '../../App.css';
 
 // import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -154,12 +156,21 @@ class Billing extends React.Component {
                 <span className="badge badge-light">Status:</span>
                 <span>
                   {this.state.premium ? (
-                    <h3 className="badge badge-dark">Premium</h3>
+                    <div>
+                      <Router>
+                        <h3 className="badge badge-dark">Premium</h3>
+                        <span className="badge badge-secondary links" onClick={this.props.logout}><NavLink exact to='/'>Logout</NavLink></span>
+                      </Router>
+                    </div>
                   ) : (
-                      <h3 className="badge badge-secondary">Standard</h3>
+                      <div>
+                        <Router>
+                          <h3 className="badge badge-secondary">Standard</h3>
+                          <span className="badge badge-dark links" onClick={this.props.logout}><NavLink exact to='/'>Logout</NavLink></span>
+                        </Router>
+                      </div>
                     )}
                 </span>
-                <span className="logoutBtn" onClick={this.props.logout}>Logout</span>
               </h5>
               <div className="billing-container">
                 <div className="billingcontent-container">
