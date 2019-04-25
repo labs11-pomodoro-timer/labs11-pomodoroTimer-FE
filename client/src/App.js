@@ -1,6 +1,6 @@
 import React, { Component, history } from 'react';
 import './App.css';
-import { ThemeProvider } from "styled-components";
+// import { ThemeProvider } from "styled-components";
 // import { Button } from "./components/themes/button.style";
 // import { Layout } from "./components/themes/background.style"
 // import { withCustomTheme } from "./components/themes/with-custom-theme";
