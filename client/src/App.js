@@ -193,10 +193,6 @@ class App extends Component {
               <NavLink exact to='/billing' className="links" >
                 Account Settings
             </NavLink>
-
-              {/* <NavLink to='/' className="links" onClick={this.logout} >
-                Logout
-            </NavLink> */}
             </div>
             <Route exact path='/' component={Profile} />
             <Route exact path='/billing' render={props => <Billing 
