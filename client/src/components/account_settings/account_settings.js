@@ -13,27 +13,39 @@ import axios from 'axios';
 class Billing extends React.Component {
   constructor() {
     super();
-    this.state = { complete: localStorage.getItem('complete'), changeEmail: '' };
+    this.state = { complete: localStorage.getItem('complete'), premium: localStorage.getItem('premium'), changeEmail: '' };
     this.onToken = this.onToken.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.premium === true) {
-      this.setState({ premium: localStorage.setItem('premium', true) })
-    }
-    if (this.state.premium === localStorage.setItem('premium', true)) {
-      this.setState({ premium: localStorage.getItem('premium') })
-    }
+    if (localStorage.getItem('premium') === true) {
+      this.setState({
+        complete: localStorage.setItem('complete', true),
+        premium: localStorage.getItem('premium')
+      })
+    } 
     axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
       .then(res => {
         this.setState({
-          premium: res.data.premiumUser
+          premium: localStorage.setItem('premium', res.data.premiumUser)
         })
         if (res.data.premiumUser === true) {
-          this.setState({ complete: localStorage.setItem('complete', true) })
+          this.setState({ 
+            complete: localStorage.setItem('complete', true),
+            premium: localStorage.getItem('premium')
+           })
         }
       })
       .catch(err => console.log(err));
+  }
+
+  componentDidUpdate() {
+    if (localStorage.getItem('premium') === true) {
+      this.setState({
+        complete: localStorage.setItem('complete', true),
+        premium: localStorage.getItem('premium')
+      })
+    }
   }
 
   // Local testing URL
@@ -63,13 +75,15 @@ class Billing extends React.Component {
       .catch(err => console.log(err));
 
     if (response.ok)
-      axios.get(`https://focustimer-labs11.herokuapp.com/api/users/${localStorage.getItem('email')}`)
-      .then(res => {
-        this.setState({
-          premium: res.data.premiumUser
+        this.setState({ 
+          premium: localStorage.setItem('premium', true),
         })
+    
+    if (response.ok)
+      this.setState({ 
+        premium: localStorage.getItem('premium'),
+        complete: localStorage.setItem('complete', true) 
       })
-      .catch(err => console.log(err));
     console.log("Purchase Successful");
   }
 

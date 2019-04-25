@@ -73,15 +73,33 @@ class App extends Component {
           timerEnd: localStorage.setItem('timerEnd', res.data.timerEnd),
           modalShow: false,
           validated: true,
-          view: localStorage.setItem('view', 'done')
+          view: localStorage.setItem('view', 'done'),
+          premium: localStorage.setItem('premium', res.data.premiumUser)
         })
+        if (res.data.premiumUser === true) {
+          this.setState({ 
+            complete: localStorage.setItem('complete', true),
+            premium: localStorage.getItem('premium')
+          })
+        }
       })
       .catch(err => console.log('MOUNT err', err));
+
+    if (localStorage.getItem('premium') === true) {
+      this.setState({
+          complete: localStorage.setItem('complete', true),
+          premium: localStorage.getItem('premium')
+        })
+      }
   }
 
-  // componentDidUpdate() {
-  //   this.state.view = localStorage.getItem('view');
-  // }
+  componentDidUpdate() {
+    // if (localStorage.getItem('slackint') === true) {
+    //   this.setState({
+    //     slackInt: localStorage.getItem('slackint')
+    //   })
+    // }
+  }
 
   handleClose() {
     this.setState({ modalShow: false });
